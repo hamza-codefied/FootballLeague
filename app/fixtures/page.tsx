@@ -139,9 +139,10 @@ export default function FixturesPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden px-4 sm:px-6">
+        {/* Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70 z-10" />
           <motion.div
             className="absolute inset-0 bg-cover bg-center"
             style={{
@@ -149,34 +150,31 @@ export default function FixturesPage() {
               scale: 1.1,
             }}
             animate={{ scale: [1.1, 1.15, 1.1] }}
-            transition={{
-              duration: 20,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
+        {/* Content */}
         <motion.div
-          className="relative z-20 text-center max-w-6xl mx-auto px-4"
+          className="relative z-20 text-center max-w-6xl mx-auto"
           style={{ y: y1 }}
         >
           <motion.div
-            className="mb-8"
+            className="mb-6 sm:mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-6 py-3 mb-6">
-              <Calendar className="w-5 h-5 text-blue-400" />
-              <span className="text-blue-400 font-semibold uppercase tracking-wider">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 sm:px-6 sm:py-3">
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+              <span className="text-blue-400 text-xs sm:text-sm font-semibold uppercase tracking-wide">
                 Match Schedule
               </span>
             </div>
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 orbitron"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8 orbitron"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -187,46 +185,46 @@ export default function FixturesPage() {
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            className="text-sm sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
             Complete schedule of all matches in the Luton Sylhet Division Cup.
-            Don't miss any of the action-packed encounters.
+            Don’t miss any of the action-packed encounters.
           </motion.p>
 
           {/* Quick Stats */}
           <motion.div
-            className="grid grid-cols-3 gap-6 mt-16 max-w-2xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-10 sm:mt-16 max-w-sm sm:max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.2 }}
           >
-            <div className="glass-effect rounded-2xl p-6 hover-lift">
-              <Trophy className="w-8 h-8 mx-auto mb-3 text-yellow-400" />
-              <div className="text-3xl font-black gradient-text orbitron">
+            <div className="glass-effect rounded-xl p-4 sm:p-6 hover-lift text-center">
+              <Trophy className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-yellow-400" />
+              <div className="text-2xl sm:text-3xl font-black gradient-text orbitron">
                 {fixtures.length}
               </div>
-              <div className="text-gray-400 text-sm uppercase tracking-wider">
+              <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">
                 Total Matches
               </div>
             </div>
-            <div className="glass-effect rounded-2xl p-6 hover-lift">
-              <Zap className="w-8 h-8 mx-auto mb-3 text-green-400" />
-              <div className="text-3xl font-black gradient-text orbitron">
+            <div className="glass-effect rounded-xl p-4 sm:p-6 hover-lift text-center">
+              <Zap className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-green-400" />
+              <div className="text-2xl sm:text-3xl font-black gradient-text orbitron">
                 {upcomingFixtures.length}
               </div>
-              <div className="text-gray-400 text-sm uppercase tracking-wider">
+              <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">
                 Upcoming
               </div>
             </div>
-            <div className="glass-effect rounded-2xl p-6 hover-lift">
-              <Target className="w-8 h-8 mx-auto mb-3 text-blue-400" />
-              <div className="text-3xl font-black gradient-text orbitron">
+            <div className="glass-effect rounded-xl p-4 sm:p-6 hover-lift text-center">
+              <Target className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-blue-400" />
+              <div className="text-2xl sm:text-3xl font-black gradient-text orbitron">
                 {completedFixtures.length}
               </div>
-              <div className="text-gray-400 text-sm uppercase tracking-wider">
+              <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wide">
                 Completed
               </div>
             </div>
@@ -301,32 +299,32 @@ export default function FixturesPage() {
 
       {/* Upcoming Fixtures */}
       {upcomingFixtures.length > 0 && (
-        <section className="py-16 px-4">
+        <section className="py-12 sm:py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.div
-              className="text-center mb-16"
+              className="text-center mb-12 sm:mb-16"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-blue-400/20 backdrop-blur-sm border border-green-500/30 rounded-full px-6 py-3 mb-8">
-                <Zap className="w-5 h-5 text-green-400" />
-                <span className="text-green-400 font-semibold uppercase tracking-wider">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-blue-400/20 backdrop-blur-sm border border-green-500/30 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8">
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
+                <span className="text-green-400 text-xs sm:text-sm font-semibold uppercase tracking-wide">
                   Coming Up
                 </span>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-black mb-6 orbitron">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6 orbitron">
                 <span className="text-white">Upcoming</span>{" "}
                 <span className="gradient-text">Matches</span>
               </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-xl text-gray-400 max-w-xl mx-auto px-2">
                 Don't miss these exciting upcoming fixtures
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {upcomingFixtures.map((fixture, index) => (
                 <motion.div
                   key={fixture.id}
@@ -336,60 +334,59 @@ export default function FixturesPage() {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden">
-                    {/* Importance Indicator */}
+                  <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden p-4 sm:p-6">
                     {fixture.importance === "high" && (
-                      <div className="absolute top-4 right-4 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                      <div className="absolute top-3 right-3 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                     )}
 
-                    <div className="flex justify-between items-center mb-6">
-                      <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full font-bold">
+                    <div className="flex justify-between items-center mb-4 sm:mb-6">
+                      <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold">
                         UPCOMING
                       </Badge>
                       <Badge
                         variant="outline"
-                        className="border-gray-600 text-gray-400 px-3 py-1 rounded-full"
+                        className="border-gray-600 text-gray-400 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm"
                       >
                         {fixture.round}
                       </Badge>
                     </div>
 
-                    <div className="text-center mb-8">
-                      <div className="flex items-center justify-between mb-6">
+                    <div className="text-center mb-6 sm:mb-8">
+                      <div className="flex items-center justify-between mb-4 sm:mb-6">
                         <div className="text-center flex-1">
-                          <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                            <span className="text-white font-bold text-lg">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl mx-auto flex items-center justify-center mb-2 sm:mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                            <span className="text-white font-bold text-base sm:text-lg">
                               H
                             </span>
                           </div>
-                          <div className="text-lg font-bold text-white group-hover:gradient-text transition-all duration-300">
+                          <div className="text-sm sm:text-lg font-bold text-white group-hover:gradient-text transition-all duration-300">
                             {fixture.homeTeam}
                           </div>
                         </div>
 
-                        <div className="mx-6">
-                          <div className="text-4xl font-black gradient-text orbitron group-hover:scale-110 transition-transform">
+                        <div className="mx-3 sm:mx-6">
+                          <div className="text-2xl sm:text-4xl font-black gradient-text orbitron group-hover:scale-110 transition-transform">
                             VS
                           </div>
                         </div>
 
                         <div className="text-center flex-1">
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                            <span className="text-white font-bold text-lg">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mx-auto flex items-center justify-center mb-2 sm:mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                            <span className="text-white font-bold text-base sm:text-lg">
                               A
                             </span>
                           </div>
-                          <div className="text-lg font-bold text-white group-hover:gradient-text transition-all duration-300">
+                          <div className="text-sm sm:text-lg font-bold text-white group-hover:gradient-text transition-all duration-300">
                             {fixture.awayTeam}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-4 mb-6">
-                      <div className="flex items-center justify-center space-x-6 text-gray-400">
-                        <div className="flex items-center space-x-2">
-                          <Calendar className="w-5 h-5 text-yellow-400" />
+                    <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                      <div className="flex items-center justify-center space-x-4 sm:space-x-6 text-gray-400 text-xs sm:text-sm">
+                        <div className="flex items-center space-x-1 sm:space-x-2">
+                          <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
                           <span className="font-medium">
                             {new Date(fixture.date).toLocaleDateString(
                               "en-US",
@@ -401,21 +398,21 @@ export default function FixturesPage() {
                             )}
                           </span>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <Clock className="w-5 h-5 text-green-400" />
+                        <div className="flex items-center space-x-1 sm:space-x-2">
+                          <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
                           <span className="font-medium">{fixture.time}</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-center">
-                        <MapPin className="w-5 h-5 mr-2 text-blue-400" />
+                      <div className="flex items-center justify-center text-xs sm:text-sm">
+                        <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-blue-400" />
                         <span className="text-gray-400 font-medium">
                           {fixture.venue}
                         </span>
                       </div>
                     </div>
 
-                    <div className="pt-6 border-t border-gray-800">
-                      <Button className="w-full btn-secondary group-hover:btn-primary transition-all duration-300">
+                    <div className="pt-4 sm:pt-6 border-t border-gray-800">
+                      <Button className="w-full btn-secondary group-hover:btn-primary text-xs sm:text-sm transition-all duration-300">
                         View Match Details
                       </Button>
                     </div>
@@ -429,33 +426,33 @@ export default function FixturesPage() {
 
       {/* Completed Fixtures */}
       {completedFixtures.length > 0 && (
-        <section className="py-16 px-4 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black"></div>
+        <section className="py-12 sm:py-16 px-4 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black" />
           <div className="max-w-7xl mx-auto relative z-10">
             <motion.div
-              className="text-center mb-16"
+              className="text-center mb-12 sm:mb-16"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-red-400/20 backdrop-blur-sm border border-purple-500/30 rounded-full px-6 py-3 mb-8">
-                <Trophy className="w-5 h-5 text-purple-400" />
-                <span className="text-purple-400 font-semibold uppercase tracking-wider">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-red-400/20 backdrop-blur-sm border border-purple-500/30 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-6 sm:mb-8">
+                <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
+                <span className="text-purple-400 text-xs sm:text-sm font-semibold uppercase tracking-wide">
                   Match Results
                 </span>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-black mb-6 orbitron">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6 orbitron">
                 <span className="text-white">Recent</span>{" "}
                 <span className="gradient-text">Results</span>
               </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-xl text-gray-400 max-w-xl mx-auto px-2">
                 Latest match results and final scores
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {completedFixtures.map((fixture, index) => (
                 <motion.div
                   key={fixture.id}
@@ -465,74 +462,74 @@ export default function FixturesPage() {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <div className="premium-card hover-lift group-hover:neon-glow">
-                    <div className="flex justify-between items-center mb-6">
-                      <Badge className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-4 py-2 rounded-full font-bold">
+                  <div className="premium-card hover-lift group-hover:neon-glow p-4 sm:p-6">
+                    <div className="flex justify-between items-center mb-4 sm:mb-6">
+                      <Badge className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold">
                         COMPLETED
                       </Badge>
                       <Badge
                         variant="outline"
-                        className="border-gray-600 text-gray-400 px-3 py-1 rounded-full"
+                        className="border-gray-600 text-gray-400 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm"
                       >
                         {fixture.round}
                       </Badge>
                     </div>
 
-                    <div className="text-center mb-8">
-                      <div className="flex items-center justify-between mb-6">
+                    <div className="text-center mb-6 sm:mb-8">
+                      <div className="flex items-center justify-between mb-4 sm:mb-6">
                         <div className="text-center flex-1">
-                          <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                            <span className="text-white font-bold text-lg">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl mx-auto flex items-center justify-center mb-2 sm:mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                            <span className="text-white font-bold text-base sm:text-lg">
                               H
                             </span>
                           </div>
-                          <div className="text-lg font-bold text-white mb-3">
+                          <div className="text-sm sm:text-lg font-bold text-white mb-2 sm:mb-3">
                             {fixture.homeTeam}
                           </div>
-                          <div className="text-3xl font-black gradient-text orbitron">
+                          <div className="text-2xl sm:text-3xl font-black gradient-text orbitron">
                             {fixture.homeScore}
                           </div>
                         </div>
 
-                        <div className="mx-6">
-                          <div className="text-2xl font-bold text-gray-500 orbitron">
+                        <div className="mx-3 sm:mx-6">
+                          <div className="text-xl sm:text-2xl font-bold text-gray-500 orbitron">
                             -
                           </div>
                         </div>
 
                         <div className="text-center flex-1">
-                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                            <span className="text-white font-bold text-lg">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl mx-auto flex items-center justify-center mb-2 sm:mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                            <span className="text-white font-bold text-base sm:text-lg">
                               A
                             </span>
                           </div>
-                          <div className="text-lg font-bold text-white mb-3">
+                          <div className="text-sm sm:text-lg font-bold text-white mb-2 sm:mb-3">
                             {fixture.awayTeam}
                           </div>
-                          <div className="text-3xl font-black gradient-text orbitron">
+                          <div className="text-2xl sm:text-3xl font-black gradient-text orbitron">
                             {fixture.awayScore}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-3 text-gray-400 text-center">
-                      <div className="flex items-center justify-center space-x-6">
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-2 text-yellow-400" />
+                    <div className="space-y-3 text-xs sm:text-sm text-gray-400 text-center">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-2 sm:space-x-6">
+                        <div className="flex items-center justify-center">
+                          <Calendar className="w-4 h-4 mr-1 text-yellow-400" />
                           <span>
                             {new Date(fixture.date).toLocaleDateString()}
                           </span>
                         </div>
-                        <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2 text-green-400" />
+                        <div className="flex items-center justify-center">
+                          <MapPin className="w-4 h-4 mr-1 text-green-400" />
                           <span>{fixture.venue}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-6 border-t border-gray-800">
-                      <Button className="w-full btn-secondary group-hover:btn-primary transition-all duration-300">
+                    <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-800">
+                      <Button className="w-full btn-secondary group-hover:btn-primary text-xs sm:text-sm transition-all duration-300">
                         Match Highlights
                       </Button>
                     </div>
