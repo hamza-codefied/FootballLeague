@@ -1,52 +1,52 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Eye, EyeOff, Mail, Lock, User } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
-  })
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!")
-      return
+      alert("Passwords do not match!");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Simulate signup process
     setTimeout(() => {
-      router.push("/dashboard")
-      setIsLoading(false)
-    }, 1500)
-  }
+      router.push("/dashboard");
+      setIsLoading(false);
+    }, 1500);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4 py-8">
@@ -71,11 +71,19 @@ export default function SignupPage() {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             >
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2">
-                <img src="/images/logo.png" alt="Luton Sylhet Division Cup" className="w-full h-full object-contain" />
+                <img
+                  src="/images/logo.png"
+                  alt="Luton Sylhet Division Cup"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
             </motion.div>
-            <CardTitle className="text-2xl font-bold text-white">Join the League</CardTitle>
-            <p className="text-gray-400 mt-2">Create your account to get started</p>
+            <CardTitle className="text-2xl font-bold text-white">
+              Join the League
+            </CardTitle>
+            <p className="text-gray-400 mt-2">
+              Create your account to get started
+            </p>
           </CardHeader>
 
           <CardContent>
@@ -139,7 +147,11 @@ export default function SignupPage() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
                   >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -165,7 +177,11 @@ export default function SignupPage() {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
                   >
-                    {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showConfirmPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -189,7 +205,11 @@ export default function SignupPage() {
                 </Label>
               </div>
 
-              <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-3" disabled={isLoading}>
+              <Button
+                type="submit"
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-3"
+                disabled={isLoading}
+              >
                 {isLoading ? (
                   <div className="flex items-center space-x-2">
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -204,7 +224,10 @@ export default function SignupPage() {
             <div className="mt-6 text-center">
               <p className="text-gray-400">
                 Already have an account?{" "}
-                <Link href="/login" className="text-red-400 hover:text-red-300 font-medium">
+                <Link
+                  href="/login"
+                  className="text-red-400 hover:text-red-300 font-medium"
+                >
                   Sign in
                 </Link>
               </p>
@@ -213,5 +236,5 @@ export default function SignupPage() {
         </Card>
       </motion.div>
     </div>
-  )
+  );
 }

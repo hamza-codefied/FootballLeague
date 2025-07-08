@@ -57,7 +57,7 @@ export default function LoginPage() {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             >
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2">
-                <img src="/images/logo.png" alt="Luton Sylhet Division Cup" className="w-full h-full object-contain" />
+                <img src="/images/logo.png" alt="Luton Sylhet Division Cup" className="w-full h-full object-cover rounded-full" />
               </div>
             </motion.div>
             <CardTitle className="text-2xl font-bold text-white">Welcome Back</CardTitle>
