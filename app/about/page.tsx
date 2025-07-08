@@ -115,7 +115,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-400/20 to-yellow-400/20 backdrop-blur-sm border border-green-400/30 rounded-full px-6 py-3 mb-6">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r mt-[5rem] from-green-400/20 to-yellow-400/20 backdrop-blur-sm border border-green-400/30 rounded-full px-6 py-3 mb-6">
               <Award className="w-5 h-5 text-green-400" />
               <span className="text-green-400 font-semibold uppercase tracking-wider">
                 Our Story

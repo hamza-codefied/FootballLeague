@@ -248,7 +248,7 @@ export default function FixturesPage() {
                   <Filter className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white orbitron">
+                  <h3 className="text-xl font-bold text-white">
                     Filter Matches
                   </h3>
                   <p className="text-gray-400 text-sm">
@@ -554,7 +554,7 @@ export default function FixturesPage() {
               <div className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl mx-auto flex items-center justify-center mb-6">
                 <Search className="w-10 h-10 text-gray-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 orbitron">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 No Fixtures Found
               </h3>
               <p className="text-gray-400 mb-8">

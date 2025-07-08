@@ -986,90 +986,39 @@ export default function HomePage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="premium-card hover-lift relative overflow-hidden">
-                {/* Form Background Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5"
-                  animate={{
-                    backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                  }}
-                  transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY }}
-                />
-
-                <h3 className="text-2xl font-bold text-white mb-8 orbitron text-center relative z-10">
+              <div className="premium-card hover-lift p-6 md:p-8 relative overflow-hidden">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-6 orbitron text-center">
                   <span className="gradient-text">Send Message</span>
                 </h3>
-
-                <form className="space-y-6 relative z-10">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-gray-300 font-medium mb-2">
-                        Name
-                      </label>
-                      <motion.input
-                        type="text"
-                        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
-                        placeholder="Your full name"
-                        whileFocus={{ scale: 1.02 }}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-300 font-medium mb-2">
-                        Email
-                      </label>
-                      <motion.input
-                        type="email"
-                        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
-                        placeholder="your@email.com"
-                        whileFocus={{ scale: 1.02 }}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-gray-300 font-medium mb-2">
-                      Subject
-                    </label>
-                    <motion.input
+                <form className="space-y-5 text-sm md:text-base">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input
                       type="text"
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
-                      placeholder="What's this about?"
-                      whileFocus={{ scale: 1.02 }}
+                      placeholder="Your Name"
+                      className="form-input"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      className="form-input"
                     />
                   </div>
-
-                  <div>
-                    <label className="block text-gray-300 font-medium mb-2">
-                      Message
-                    </label>
-                    <motion.textarea
-                      rows={5}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors resize-none"
-                      placeholder="Tell us more about your inquiry..."
-                      whileFocus={{ scale: 1.02 }}
-                    ></motion.textarea>
-                  </div>
-
-                  <motion.button
+                  <input
+                    type="text"
+                    placeholder="Subject"
+                    className="form-input"
+                  />
+                  <textarea
+                    rows={4}
+                    placeholder="Message"
+                    className="form-input resize-none"
+                  />
+                  <button
                     type="submit"
-                    className="w-full btn-primary text-lg py-4 group relative overflow-hidden"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    className="btn-primary w-full text-center"
                   >
-                    {/* Button Shine Effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                      animate={{ x: ["-100%", "200%"] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
-                      }}
-                    />
-                    <span className="flex items-center justify-center space-x-2 relative z-10">
-                      <span>Send Message</span>
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </motion.button>
+                    Send Message
+                  </button>
                 </form>
               </div>
             </motion.div>

@@ -46,9 +46,9 @@ export default function Navigation() {
             <Link href="/" className="flex items-center space-x-3">
               <div className="relative">
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo-no-bg.png"
                   alt="Luton Sylhet Division Cup"
-                  className="w-12 h-12 object-contain filter drop-shadow-lg"
+                  className="w-12 h-12 object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-full blur-xl"></div>
               </div>
