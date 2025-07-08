@@ -163,7 +163,7 @@ export default function HomePage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-green-400/20 backdrop-blur-sm border border-yellow-400/30 rounded-full px-6 py-3 mb-6">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-green-400/20 mt-[5em] backdrop-blur-sm border border-yellow-400/30 rounded-full px-6 py-3 mb-6">
               <Zap className="w-5 h-5 text-yellow-400" />
               <span className="text-yellow-400 font-semibold">
                 SEASON 2025 LIVE
@@ -172,7 +172,7 @@ export default function HomePage() {
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 orbitron"
+            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -209,11 +209,6 @@ export default function HomePage() {
                 <span>View Fixtures</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-            </Button>
-
-            <Button className="btn-secondary text-lg px-8 py-4 group">
-              <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              <span>Watch Highlights</span>
             </Button>
           </motion.div>
 
@@ -348,7 +343,7 @@ export default function HomePage() {
               </span>
             </motion.div>
 
-            <h2 className="text-5xl md:text-6xl font-black mb-6 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="gradient-text">Next</span>{" "}
               <span className="text-white">Fixtures</span>
             </h2>
@@ -572,7 +567,7 @@ export default function HomePage() {
             viewport={{ once: true }}
           >
             <motion.h2
-              className="text-5xl md:text-6xl font-black mb-6 orbitron"
+              className="text-5xl md:text-6xl font-black mb-6"
               animate={{
                 textShadow: [
                   "0 0 20px rgba(212, 175, 55, 0.5)",
@@ -757,7 +752,7 @@ export default function HomePage() {
               </span>
             </motion.div>
 
-            <h2 className="text-5xl md:text-6xl font-black mb-6 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="text-white">League</span>{" "}
               <span className="gradient-text">News</span>
             </h2>
@@ -968,7 +963,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.h2
-              className="text-5xl md:text-6xl font-black mb-6 orbitron"
+              className="text-5xl md:text-6xl font-black mb-6"
               animate={{
                 textShadow: [
                   "0 0 20px rgba(59, 130, 246, 0.5)",
@@ -1101,7 +1096,7 @@ export default function HomePage() {
                     style={{ backgroundSize: "200% 200%" }}
                   />
 
-                  <h3 className="text-xl font-bold text-white mb-6 orbitron text-center relative z-10">
+                  <h3 className="text-xl font-bold text-white mb-6  text-center relative z-10">
                     Follow Us
                   </h3>
                   <div className="flex justify-center space-x-4 relative z-10">
@@ -1163,7 +1158,7 @@ export default function HomePage() {
                   transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY }}
                 />
 
-                <h3 className="text-2xl font-bold text-white mb-8 orbitron text-center relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-8 text-center relative z-10">
                   <span className="gradient-text">Send Message</span>
                 </h3>
 
@@ -1261,7 +1256,7 @@ export default function HomePage() {
               />
 
               <div className="text-center mb-8 relative z-10">
-                <h3 className="text-2xl font-bold text-white orbitron mb-2">
+                <h3 className="text-2xl font-bold text-white mb-2">
                   <span className="gradient-text">Find Us</span>
                 </h3>
                 <p className="text-gray-400">
@@ -1351,7 +1346,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-black mb-8 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-8">
               <span className="text-white">Ready to</span>{" "}
               <span className="gradient-text">Join?</span>
             </h2>

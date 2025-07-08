@@ -167,7 +167,7 @@ export default function FixturesPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-6 py-3 mb-6">
+            <div className="inline-flex items-center space-x-2 mt-[5rem] bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-6 py-3 mb-6">
               <Calendar className="w-5 h-5 text-blue-400" />
               <span className="text-blue-400 font-semibold uppercase tracking-wider">
                 Match Schedule
@@ -176,7 +176,7 @@ export default function FixturesPage() {
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 orbitron"
+            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -250,7 +250,7 @@ export default function FixturesPage() {
                   <Filter className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white orbitron">
+                  <h3 className="text-xl font-bold text-white">
                     Filter Matches
                   </h3>
                   <p className="text-gray-400 text-sm">
@@ -317,7 +317,7 @@ export default function FixturesPage() {
                 </span>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-black mb-6 orbitron">
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
                 <span className="text-white">Upcoming</span>{" "}
                 <span className="gradient-text">Matches</span>
               </h2>
@@ -446,7 +446,7 @@ export default function FixturesPage() {
                 </span>
               </div>
 
-              <h2 className="text-4xl md:text-5xl font-black mb-6 orbitron">
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
                 <span className="text-white">Recent</span>{" "}
                 <span className="gradient-text">Results</span>
               </h2>
@@ -557,7 +557,7 @@ export default function FixturesPage() {
               <div className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl mx-auto flex items-center justify-center mb-6">
                 <Search className="w-10 h-10 text-gray-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 orbitron">
+              <h3 className="text-2xl font-bold text-white mb-4">
                 No Fixtures Found
               </h3>
               <p className="text-gray-400 mb-8">
