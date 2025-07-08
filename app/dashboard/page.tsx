@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Calendar, Clock, MapPin, Trophy, Star, Bell } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import Navigation from "@/components/navigation"
+import { motion } from "framer-motion";
+import { Calendar, Clock, MapPin, Trophy, Star, Bell } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import Navigation from "@/components/navigation";
 
 const userFixtures = [
   {
@@ -50,7 +50,7 @@ const userFixtures = [
     awayScore: 1,
     round: "Round 1",
   },
-]
+];
 
 const notifications = [
   {
@@ -71,11 +71,11 @@ const notifications = [
     time: "2 days ago",
     type: "update",
   },
-]
+];
 
 export default function DashboardPage() {
-  const upcomingFixtures = userFixtures.filter((f) => f.status === "upcoming")
-  const recentResults = userFixtures.filter((f) => f.status === "completed")
+  const upcomingFixtures = userFixtures.filter((f) => f.status === "upcoming");
+  const recentResults = userFixtures.filter((f) => f.status === "completed");
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -93,7 +93,9 @@ export default function DashboardPage() {
             <h1 className="text-4xl font-bold mb-2">
               Welcome to Your <span className="text-red-500">Dashboard</span>
             </h1>
-            <p className="text-gray-400">Stay updated with the latest fixtures and results</p>
+            <p className="text-gray-400">
+              Stay updated with the latest fixtures and results
+            </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -120,18 +122,30 @@ export default function DashboardPage() {
                           className="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors"
                         >
                           <div className="flex items-center justify-between mb-3">
-                            <Badge variant="outline" className="border-gray-600 text-gray-400">
+                            <Badge
+                              variant="outline"
+                              className="border-gray-600 text-gray-400"
+                            >
                               {fixture.round}
                             </Badge>
-                            <Badge variant="secondary" className="bg-green-600 text-white">
+                            <Badge
+                              variant="secondary"
+                              className="bg-green-600 text-white"
+                            >
                               UPCOMING
                             </Badge>
                           </div>
                           <div className="text-center mb-4">
                             <div className="flex items-center justify-between">
-                              <div className="text-lg font-semibold text-white">{fixture.homeTeam}</div>
-                              <div className="text-xl font-bold text-red-500 mx-4">VS</div>
-                              <div className="text-lg font-semibold text-white">{fixture.awayTeam}</div>
+                              <div className="text-lg font-semibold text-white">
+                                {fixture.homeTeam}
+                              </div>
+                              <div className="text-xl font-bold text-red-500 mx-4">
+                                VS
+                              </div>
+                              <div className="text-lg font-semibold text-white">
+                                {fixture.awayTeam}
+                              </div>
                             </div>
                           </div>
                           <div className="flex items-center justify-center space-x-6 text-sm text-gray-400">
@@ -171,25 +185,44 @@ export default function DashboardPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {recentResults.map((fixture) => (
-                        <div key={fixture.id} className="bg-gray-700 rounded-lg p-4">
+                        <div
+                          key={fixture.id}
+                          className="bg-gray-700 rounded-lg p-4"
+                        >
                           <div className="flex items-center justify-between mb-3">
-                            <Badge variant="outline" className="border-gray-600 text-gray-400">
+                            <Badge
+                              variant="outline"
+                              className="border-gray-600 text-gray-400"
+                            >
                               {fixture.round}
                             </Badge>
-                            <Badge variant="secondary" className="bg-gray-600 text-white">
+                            <Badge
+                              variant="secondary"
+                              className="bg-gray-600 text-white"
+                            >
                               COMPLETED
                             </Badge>
                           </div>
                           <div className="text-center mb-4">
                             <div className="flex items-center justify-between">
                               <div className="text-center flex-1">
-                                <div className="text-lg font-semibold text-white mb-2">{fixture.homeTeam}</div>
-                                <div className="text-2xl font-bold text-white">{fixture.homeScore}</div>
+                                <div className="text-lg font-semibold text-white mb-2">
+                                  {fixture.homeTeam}
+                                </div>
+                                <div className="text-2xl font-bold text-white">
+                                  {fixture.homeScore}
+                                </div>
                               </div>
-                              <div className="text-xl font-bold text-gray-500 mx-4">-</div>
+                              <div className="text-xl font-bold text-gray-500 mx-4">
+                                -
+                              </div>
                               <div className="text-center flex-1">
-                                <div className="text-lg font-semibold text-white mb-2">{fixture.awayTeam}</div>
-                                <div className="text-2xl font-bold text-white">{fixture.awayScore}</div>
+                                <div className="text-lg font-semibold text-white mb-2">
+                                  {fixture.awayTeam}
+                                </div>
+                                <div className="text-2xl font-bold text-white">
+                                  {fixture.awayScore}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -230,19 +263,27 @@ export default function DashboardPage() {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
                         <span className="text-gray-400">Total Fixtures</span>
-                        <span className="text-white font-semibold">{userFixtures.length}</span>
+                        <span className="text-white font-semibold">
+                          {userFixtures.length}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-gray-400">Upcoming</span>
-                        <span className="text-green-400 font-semibold">{upcomingFixtures.length}</span>
+                        <span className="text-green-400 font-semibold">
+                          {upcomingFixtures.length}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-gray-400">Completed</span>
-                        <span className="text-blue-400 font-semibold">{recentResults.length}</span>
+                        <span className="text-blue-400 font-semibold">
+                          {recentResults.length}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-gray-400">Teams</span>
-                        <span className="text-purple-400 font-semibold">10</span>
+                        <span className="text-purple-400 font-semibold">
+                          10
+                        </span>
                       </div>
                     </div>
                   </CardContent>
@@ -265,9 +306,16 @@ export default function DashboardPage() {
                   <CardContent>
                     <div className="space-y-3">
                       {notifications.map((notification) => (
-                        <div key={notification.id} className="bg-gray-700 rounded-lg p-3">
-                          <p className="text-white text-sm mb-1">{notification.message}</p>
-                          <p className="text-gray-400 text-xs">{notification.time}</p>
+                        <div
+                          key={notification.id}
+                          className="bg-gray-700 rounded-lg p-3"
+                        >
+                          <p className="text-white text-sm mb-1">
+                            {notification.message}
+                          </p>
+                          <p className="text-gray-400 text-xs">
+                            {notification.time}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -285,5 +333,5 @@ export default function DashboardPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

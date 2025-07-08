@@ -1,5 +1,5 @@
-import { Mail, Phone, MapPin } from "lucide-react"
-import Link from "next/link"
+import { Mail, Phone, MapPin } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -9,11 +9,16 @@ export default function Footer() {
           {/* Logo & Description */}
           <div className="col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <img src="/images/logo.png" alt="Luton Sylhet Division Cup" className="w-8 h-8 object-contain" />
+              <img
+                src="/images/logo.png"
+                alt="Luton Sylhet Division Cup"
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-xl font-bold text-white">Luton Sylhet</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              The premier football league bringing together the best teams from Luton Sylhet districts.
+              The premier football league bringing together the best teams from
+              Luton Sylhet districts.
             </p>
           </div>
 
@@ -21,16 +26,28 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <div className="space-y-2">
-              <Link href="/" className="block text-gray-400 hover:text-red-500 transition-colors text-sm">
+              <Link
+                href="/"
+                className="block text-gray-400 hover:text-red-500 transition-colors text-sm"
+              >
                 Home
               </Link>
-              <Link href="/about" className="block text-gray-400 hover:text-red-500 transition-colors text-sm">
+              <Link
+                href="/about"
+                className="block text-gray-400 hover:text-red-500 transition-colors text-sm"
+              >
                 About Us
               </Link>
-              <Link href="/fixtures" className="block text-gray-400 hover:text-red-500 transition-colors text-sm">
+              <Link
+                href="/fixtures"
+                className="block text-gray-400 hover:text-red-500 transition-colors text-sm"
+              >
                 Fixtures
               </Link>
-              <Link href="/login" className="block text-gray-400 hover:text-red-500 transition-colors text-sm">
+              <Link
+                href="/login"
+                className="block text-gray-400 hover:text-red-500 transition-colors text-sm"
+              >
                 Login
               </Link>
             </div>
@@ -69,9 +86,11 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400 text-sm">© 2025 District Football League. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">
+            © 2025 District Football League. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
