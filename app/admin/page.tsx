@@ -32,6 +32,9 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/navigation";
+import { useFixtures } from "@/hooks/use-fixtures";
+import { useCreateFixture } from "@/hooks/use-create-fixture";
+import toast from "react-hot-toast";
 
 const teams = [
   "Dakshin Surma",
@@ -55,28 +58,8 @@ const venues = [
 ];
 
 export default function AdminPage() {
-  const [fixtures, setFixtures] = useState([
-    {
-      id: 1,
-      homeTeam: "Dakshin Surma",
-      awayTeam: "Golapgonj",
-      date: "2025-01-15",
-      time: "16:00",
-      venue: "Central Stadium",
-      status: "upcoming",
-      round: "Round 1",
-    },
-    {
-      id: 2,
-      homeTeam: "Fenchugonj",
-      awayTeam: "Balaganj",
-      date: "2025-01-16",
-      time: "18:00",
-      venue: "Sports Complex",
-      status: "upcoming",
-      round: "Round 1",
-    },
-  ]);
+  const { data: fixtures = [] } = useFixtures();
+  const { mutate: createFixture, isLoading } = useCreateFixture();
 
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [newFixture, setNewFixture] = useState({
@@ -89,61 +72,33 @@ export default function AdminPage() {
   });
 
   const handleCreateFixture = () => {
-    if (
-      newFixture.homeTeam &&
-      newFixture.awayTeam &&
-      newFixture.date &&
-      newFixture.time &&
-      newFixture.venue
-    ) {
-      const fixture = {
-        id: fixtures.length + 1,
-        ...newFixture,
-        status: "upcoming",
-      };
-      setFixtures([...fixtures, fixture]);
-      setNewFixture({
-        homeTeam: "",
-        awayTeam: "",
-        date: "",
-        time: "",
-        venue: "",
-        round: "Round 1",
-      });
-      setIsCreateDialogOpen(false);
-    }
-  };
+    const payload = {
+      home_team: newFixture.homeTeam,
+      away_team: newFixture.awayTeam,
+      fixture_date: newFixture.date,
+      fixture_time: newFixture.time,
+      venue: newFixture.venue,
+      round: newFixture.round,
+    };
 
-  const handleDeleteFixture = (id: number) => {
-    setFixtures(fixtures.filter((f) => f.id !== id));
+    createFixture(payload, {
+      onSuccess: () => {
+        toast.success("Fixture created successfully!");
+        setIsCreateDialogOpen(false);
+        setNewFixture({
+          homeTeam: "",
+          awayTeam: "",
+          date: "",
+          time: "",
+          venue: "",
+          round: "",
+        });
+      },
+      onError: (error: any) => {
+        toast.error("Error creating fixture: " + error.message);
+      },
+    });
   };
-
-  const stats = [
-    {
-      title: "Total Fixtures",
-      value: fixtures.length,
-      icon: Calendar,
-      color: "text-blue-500",
-    },
-    {
-      title: "Teams",
-      value: teams.length,
-      icon: Users,
-      color: "text-green-500",
-    },
-    {
-      title: "Venues",
-      value: venues.length,
-      icon: MapPin,
-      color: "text-purple-500",
-    },
-    {
-      title: "Upcoming",
-      value: fixtures.filter((f) => f.status === "upcoming").length,
-      icon: Trophy,
-      color: "text-red-500",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -165,34 +120,6 @@ export default function AdminPage() {
               Manage fixtures and league operations
             </p>
           </motion.div>
-
-          {/* Stats Cards */}
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="bg-gray-800 border-gray-700">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-gray-400 text-sm font-medium">
-                          {stat.title}
-                        </p>
-                        <p className="text-2xl font-bold text-white">
-                          {stat.value}
-                        </p>
-                      </div>
-                      <stat.icon className={`w-8 h-8 ${stat.color}`} />
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div> */}
 
           {/* Fixtures Management */}
           <motion.div
@@ -350,7 +277,7 @@ export default function AdminPage() {
                           onClick={handleCreateFixture}
                           className="w-full bg-red-600 hover:bg-red-700"
                         >
-                          Create Fixture
+                          {isLoading ? "Creating..." : "Create Fixture"}
                         </Button>
                       </div>
                     </DialogContent>
@@ -373,24 +300,18 @@ export default function AdminPage() {
                             >
                               {fixture.round}
                             </Badge>
-                            <Badge
-                              variant="secondary"
-                              className="bg-green-600 text-white"
-                            >
-                              {fixture.status.toUpperCase()}
-                            </Badge>
                           </div>
                           <div className="text-lg font-semibold text-white mb-2">
-                            {fixture.homeTeam} vs {fixture.awayTeam}
+                            {fixture.home_team} vs {fixture.away_team}
                           </div>
                           <div className="flex items-center space-x-4 text-sm text-gray-400">
                             <div className="flex items-center">
                               <Calendar className="w-4 h-4 mr-1" />
-                              {fixture.date}
+                              {fixture.fixture_date}
                             </div>
                             <div className="flex items-center">
                               <Clock className="w-4 h-4 mr-1" />
-                              {fixture.time}
+                              {fixture.fixture_time}
                             </div>
                             <div className="flex items-center">
                               <MapPin className="w-4 h-4 mr-1" />
@@ -402,15 +323,7 @@ export default function AdminPage() {
                           <Button
                             size="sm"
                             variant="outline"
-                            className="border-gray-600 text-gray-400 hover:text-white bg-transparent"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
                             className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white bg-transparent"
-                            onClick={() => handleDeleteFixture(fixture.id)}
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>

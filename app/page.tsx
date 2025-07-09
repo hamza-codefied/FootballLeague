@@ -21,42 +21,8 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
-
-const upcomingFixtures = [
-  {
-    id: 1,
-    homeTeam: "Dakshin Surma",
-    awayTeam: "Golapgonj",
-    date: "2025-01-15",
-    time: "16:00",
-    venue: "Central Stadium",
-    status: "upcoming",
-    homeScore: null,
-    awayScore: null,
-  },
-  {
-    id: 2,
-    homeTeam: "Fenchugonj",
-    awayTeam: "Balaganj",
-    date: "2025-01-16",
-    time: "18:00",
-    venue: "Sports Complex",
-    status: "upcoming",
-    homeScore: null,
-    awayScore: null,
-  },
-  {
-    id: 3,
-    homeTeam: "Jagannathpur",
-    awayTeam: "Bishwanath",
-    date: "2025-01-17",
-    time: "15:30",
-    venue: "District Ground",
-    status: "upcoming",
-    homeScore: null,
-    awayScore: null,
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { useFixtures } from "@/hooks/use-fixtures";
 
 const blogPosts = [
   {
@@ -104,6 +70,14 @@ export default function HomePage() {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
+
+  const {
+    data: fixtures,
+    isLoading: fixturesLoading,
+    isFetching: fixturesFetching,
+    isError: fixturesError,
+    refetch: refetchFixtures,
+  } = useFixtures();
 
   return (
     <div className="min-h-screen animated-bg text-white overflow-hidden">
@@ -172,7 +146,7 @@ export default function HomePage() {
           </motion.div>
 
           <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8 orbitron"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -234,7 +208,7 @@ export default function HomePage() {
                 className="text-center glass-effect rounded-xl sm:rounded-2xl p-4 sm:p-6 hover-lift"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-xl sm:text-3xl font-bold gradient-text orbitron">
+                <div className="text-xl sm:text-3xl font-bold gradient-text">
                   {stat.number}
                 </div>
                 <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wider">
@@ -248,12 +222,6 @@ export default function HomePage() {
 
       {/* Upcoming Fixtures Section */}
       <section className="py-20 sm:py-24 md:py-32 px-4 relative overflow-hidden">
-        {/* INSANE Background Effects */}
-        <div className="absolute inset-0">
-          {/* Background & Floating Effects remain the same */}
-          {/* Keep all your motion.div background effects as is */}
-        </div>
-
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Heading */}
           <motion.div
@@ -280,7 +248,7 @@ export default function HomePage() {
               </span>
             </motion.div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 orbitron">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6">
               <span className="gradient-text">Next</span>{" "}
               <span className="text-white">Fixtures</span>
             </h2>
@@ -290,8 +258,8 @@ export default function HomePage() {
           </motion.div>
 
           {/* Fixtures Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {upcomingFixtures.map((fixture, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+            {fixtures?.map((fixture, index) => (
               <motion.div
                 key={fixture.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -300,7 +268,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden">
+                <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden min-h-[350px]">
                   {/* Card Background Effect */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -319,7 +287,7 @@ export default function HomePage() {
                     </Badge>
                     <div className="flex items-center text-gray-400">
                       <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                      {new Date(fixture.date).toLocaleDateString()}
+                      {new Date(fixture.fixture_date).toLocaleDateString()}
                     </div>
                   </div>
 
@@ -336,22 +304,13 @@ export default function HomePage() {
                             H
                           </span>
                         </motion.div>
-                        <div className="text-sm sm:text-lg font-bold text-white">
-                          {fixture.homeTeam}
+                        <div className="text-sm font-bold text-white">
+                          {fixture.home_team}
                         </div>
                       </div>
 
                       <div className="mx-4 sm:mx-6">
-                        <motion.div
-                          className="text-xl sm:text-3xl font-black gradient-text orbitron"
-                          animate={{
-                            scale: [1, 1.1, 1],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Number.POSITIVE_INFINITY,
-                          }}
-                        >
+                        <motion.div className="text-xl font-black gradient-text">
                           VS
                         </motion.div>
                       </div>
@@ -366,8 +325,8 @@ export default function HomePage() {
                             A
                           </span>
                         </motion.div>
-                        <div className="text-sm sm:text-lg font-bold text-white">
-                          {fixture.awayTeam}
+                        <div className="text-sm font-bold text-white">
+                          {fixture.away_team}
                         </div>
                       </div>
                     </div>
@@ -377,11 +336,13 @@ export default function HomePage() {
                     <div className="flex items-center justify-center space-x-4 sm:space-x-6">
                       <div className="flex items-center">
                         <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-yellow-400" />
-                        <span>{fixture.time}</span>
+                        <span>{fixture.fixture_time}</span>
                       </div>
                       <div className="flex items-center">
                         <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-green-400" />
-                        <span>{fixture.venue}</span>
+                        <span className="text-xs line-clamp-1">
+                          {fixture.venue}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -415,90 +376,74 @@ export default function HomePage() {
 
       {/* Stats Section */}
       <section className="py-24 sm:py-28 md:py-32 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          {/* Animated Hexagon Pattern */}
-          <div className="absolute inset-0 opacity-5">
-            {[...Array(50)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-10 h-10 sm:w-16 sm:h-16"
-                style={{
-                  left: `${(i % 10) * 10}%`,
-                  top: `${Math.floor(i / 10) * 20}%`,
-                  clipPath:
-                    "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-                  background: "linear-gradient(45deg, #d4af37, #1a5f3f)",
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1],
-                  opacity: [0.1, 0.3, 0.1],
-                }}
-                transition={{
-                  duration: 8 + Math.random() * 4,
-                  repeat: Number.POSITIVE_INFINITY,
-                  delay: Math.random() * 2,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Flowing Energy Lines */}
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              background: `
-          linear-gradient(45deg, transparent 40%, rgba(212, 175, 55, 0.1) 50%, transparent 60%),
-          linear-gradient(-45deg, transparent 40%, rgba(26, 95, 63, 0.1) 50%, transparent 60%)
-        `,
-            }}
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%"],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-          />
-
-          {/* Pulsing Orbs */}
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-40 h-40 sm:w-64 sm:h-64 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-          />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-52 h-52 sm:w-80 sm:h-80 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(26, 95, 63, 0.1) 0%, transparent 70%)",
-            }}
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: 2,
-            }}
-          />
+        {/* Hexagon Pattern (optimized count) */}
+        <div className="absolute inset-0 opacity-5">
+          {[...Array(30)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-12 h-12 sm:w-16 sm:h-16"
+              style={{
+                left: `${(i % 6) * 16}%`,
+                top: `${Math.floor(i / 6) * 20}%`,
+                clipPath:
+                  "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+                background: "linear-gradient(45deg, #d4af37, #1a5f3f)",
+              }}
+              animate={{
+                rotate: [0, 360],
+                opacity: [0.08, 0.2, 0.08],
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                delay: i * 0.1,
+                ease: "linear",
+              }}
+            />
+          ))}
         </div>
 
+        {/* Flowing Lines */}
         <motion.div
-          className="max-w-7xl mx-auto px-4 relative z-10"
-          style={{ y: y2 }}
-        >
-          {/* Section Heading */}
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-50/10 to-transparent"
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+
+        {/* Pulsing Orbs */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)",
+          }}
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-52 h-52 sm:w-72 sm:h-72 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(26, 95, 63, 0.15) 0%, transparent 70%)",
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.15, 0.35, 0.15],
+          }}
+          transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+        />
+
+        {/* Content */}
+        <motion.div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-12 sm:mb-20"
             initial={{ opacity: 0, y: 50 }}
@@ -507,15 +452,15 @@ export default function HomePage() {
             viewport={{ once: true }}
           >
             <motion.h2
-              className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 orbitron"
+              className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6"
               animate={{
                 textShadow: [
-                  "0 0 20px rgba(212, 175, 55, 0.5)",
-                  "0 0 40px rgba(212, 175, 55, 0.8)",
-                  "0 0 20px rgba(212, 175, 55, 0.5)",
+                  "0 0 12px rgba(212, 175, 55, 0.5)",
+                  "0 0 20px rgba(212, 175, 55, 0.8)",
+                  "0 0 12px rgba(212, 175, 55, 0.5)",
                 ],
               }}
-              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+              transition={{ duration: 4, repeat: Infinity }}
             >
               <span className="text-white">League</span>{" "}
               <span className="gradient-text">Statistics</span>
@@ -553,43 +498,23 @@ export default function HomePage() {
               <motion.div
                 key={index}
                 className="text-center group relative"
-                initial={{ opacity: 0, scale: 0.5 }}
+                initial={{ opacity: 0, scale: 0.7 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.7, delay: index * 0.15 }}
                 viewport={{ once: true }}
               >
                 <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden p-6 sm:p-8">
-                  {/* Shimmer */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12"
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Number.POSITIVE_INFINITY,
-                      delay: index * 0.5,
-                    }}
-                  />
-
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 360 }}
+                    whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                   >
                     <stat.icon
-                      className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 ${stat.color} group-hover:scale-110 transition-transform`}
+                      className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 ${stat.color}`}
                     />
                   </motion.div>
-
-                  <motion.div
-                    className="text-2xl sm:text-4xl font-black gradient-text orbitron mb-2 sm:mb-3"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Number.POSITIVE_INFINITY,
-                      delay: index * 0.3,
-                    }}
-                  >
+                  <div className="text-2xl sm:text-4xl font-black gradient-text mb-2">
                     {stat.value}
-                  </motion.div>
+                  </div>
                   <div className="text-gray-400 uppercase tracking-wider text-xs sm:text-sm font-semibold">
                     {stat.label}
                   </div>
@@ -691,7 +616,7 @@ export default function HomePage() {
               </span>
             </motion.div>
 
-            <h2 className="text-5xl md:text-6xl font-black mb-6 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="text-white">League</span>{" "}
               <span className="gradient-text">News</span>
             </h2>
@@ -871,7 +796,7 @@ export default function HomePage() {
             </motion.div>
 
             <motion.h2
-              className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 md:mb-6 orbitron"
+              className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 md:mb-6"
               animate={{
                 textShadow: [
                   "0 0 20px rgba(59,130,246,0.5)",
@@ -936,7 +861,7 @@ export default function HomePage() {
                         <contact.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-base md:text-lg font-bold text-white orbitron group-hover:gradient-text mb-1">
+                        <h3 className="text-base md:text-lg font-bold text-white group-hover:gradient-text mb-1">
                           {contact.title}
                         </h3>
                         <p
@@ -955,7 +880,7 @@ export default function HomePage() {
 
               {/* Social Icons */}
               <div className="premium-card py-6">
-                <h3 className="text-lg md:text-xl font-bold text-white orbitron mb-4 text-center">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-4 text-center">
                   Follow Us
                 </h3>
                 <div className="flex justify-center flex-wrap gap-4">
@@ -996,7 +921,7 @@ export default function HomePage() {
                   transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY }}
                 />
 
-                <h3 className="text-2xl font-bold text-white mb-8 orbitron text-center relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-8 text-center relative z-10">
                   <span className="gradient-text">Send Message</span>
                 </h3>
 
@@ -1087,7 +1012,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl md:text-6xl font-black mb-8 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-8">
               <span className="text-white">Ready to</span>{" "}
               <span className="gradient-text">Join?</span>
             </h2>

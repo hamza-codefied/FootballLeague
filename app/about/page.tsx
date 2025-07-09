@@ -124,7 +124,7 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 orbitron"
+            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -159,7 +159,7 @@ export default function AboutPage() {
                 whileHover={{ scale: 1.05 }}
               >
                 <achievement.icon className="w-8 h-8 mx-auto mb-3 text-yellow-400" />
-                <div className="text-3xl font-black gradient-text orbitron">
+                <div className="text-3xl font-black gradient-text">
                   {achievement.number}
                 </div>
                 <div className="text-gray-400 text-sm uppercase tracking-wider">
@@ -173,50 +173,35 @@ export default function AboutPage() {
 
       {/* Mission Section */}
       <section className="py-32 px-4 relative overflow-hidden">
-        {/* SPECTACULAR Background Effects */}
+        {/* Background Effects */}
         <div className="absolute inset-0">
-          {/* Animated Football Field Lines */}
+          {/* Simple Field Lines */}
           <div className="absolute inset-0 opacity-10">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
+            {[...Array(12)].map((_, i) => (
+              <div
                 key={i}
-                className="absolute h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent"
-                style={{
-                  left: "0%",
-                  right: "0%",
-                  top: `${i * 5}%`,
-                }}
-                animate={{
-                  scaleX: [1, 1.2, 1],
-                  opacity: [0.3, 0.7, 0.3],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  delay: Math.random() * 2,
-                }}
+                className="absolute h-1 bg-gradient-to-r from-transparent via-green-400/10 to-transparent"
+                style={{ top: `${i * 8}%`, left: 0, right: 0 }}
               />
             ))}
           </div>
 
-          {/* Floating Mission Icons */}
-          {[...Array(15)].map((_, i) => (
+          {/* Floating Icons */}
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-8 h-8 rounded-full bg-gradient-to-br from-red-400/20 to-yellow-400/20 border border-red-400/30"
+              className="absolute w-8 h-8 rounded-full bg-gradient-to-br from-red-400/10 to-yellow-400/10 border border-red-400/20"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -40, 0],
-                rotate: [0, 180, 360],
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.8, 0.3],
+                y: [0, -20, 0],
+                opacity: [0.2, 0.5, 0.2],
               }}
               transition={{
-                duration: 6 + Math.random() * 2,
-                repeat: Number.POSITIVE_INFINITY,
+                duration: 8,
+                repeat: Infinity,
                 delay: Math.random() * 3,
               }}
             />
@@ -226,15 +211,14 @@ export default function AboutPage() {
           <motion.div
             className="absolute inset-0"
             style={{
-              background: `
-                linear-gradient(45deg, rgba(239, 68, 68, 0.05) 0%, transparent 50%),
-                linear-gradient(-45deg, rgba(251, 191, 36, 0.05) 0%, transparent 50%)
-              `,
+              background:
+                "linear-gradient(45deg, rgba(239, 68, 68, 0.03) 0%, transparent 50%)," +
+                "linear-gradient(-45deg, rgba(251, 191, 36, 0.03) 0%, transparent 50%)",
             }}
             animate={{
-              backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+              backgroundPosition: ["0% 0%", "100% 100%"],
             }}
-            transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
           />
         </div>
 
@@ -246,24 +230,14 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <motion.div
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/20 to-yellow-400/20 backdrop-blur-sm border border-red-500/30 rounded-full px-6 py-3 mb-8"
-                animate={{
-                  boxShadow: [
-                    "0 0 20px rgba(239, 68, 68, 0.3)",
-                    "0 0 40px rgba(239, 68, 68, 0.6)",
-                    "0 0 20px rgba(239, 68, 68, 0.3)",
-                  ],
-                }}
-                transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY }}
-              >
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/20 to-yellow-400/20 backdrop-blur-sm border border-red-500/30 rounded-full px-6 py-3 mb-8">
                 <Target className="w-5 h-5 text-red-400" />
                 <span className="text-red-400 font-semibold uppercase tracking-wider">
                   Our Mission
                 </span>
-              </motion.div>
+              </div>
 
-              <h2 className="text-4xl md:text-5xl font-black mb-8 orbitron">
+              <h2 className="text-4xl md:text-5xl font-black mb-8">
                 <span className="text-white">Uniting</span>{" "}
                 <span className="gradient-text">Communities</span>
               </h2>
@@ -272,7 +246,7 @@ export default function AboutPage() {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                 >
                   The Luton Sylhet Division Cup was established to create a
@@ -283,7 +257,7 @@ export default function AboutPage() {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
                   We believe in the power of football to unite communities,
@@ -298,44 +272,18 @@ export default function AboutPage() {
                   { number: "10", label: "Districts United" },
                   { number: "200+", label: "Active Players" },
                 ].map((stat, index) => (
-                  <motion.div
+                  <div
                     key={index}
                     className="text-center premium-card relative overflow-hidden group"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
-                    viewport={{ once: true }}
                   >
-                    {/* Pulsing Background */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-green-400/10"
-                      animate={{
-                        opacity: [0.3, 0.6, 0.3],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
-                        delay: index * 0.5,
-                      }}
-                    />
-
-                    <motion.div
-                      className="text-4xl font-black gradient-text orbitron mb-2 relative z-10"
-                      animate={{
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Number.POSITIVE_INFINITY,
-                        delay: index * 0.5,
-                      }}
-                    >
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-green-400/10" />
+                    <div className="text-4xl font-black gradient-text mb-2 relative z-10">
                       {stat.number}
-                    </motion.div>
+                    </div>
                     <div className="text-gray-400 uppercase tracking-wider relative z-10">
                       {stat.label}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>
@@ -352,49 +300,30 @@ export default function AboutPage() {
                   src="/images/football-action.jpg"
                   alt="Football action"
                   className="w-full h-[600px] object-cover group-hover:scale-105 transition-transform duration-700"
-                  whileHover={{ scale: 1.05 }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                {/* Floating Elements with INSANE Effects */}
+                {/* Floating Trophy */}
                 <motion.div
-                  className="absolute top-8 right-8 glass-effect rounded-2xl p-4 group-hover:neon-glow"
+                  className="absolute top-8 right-8 glass-effect rounded-2xl p-4"
                   animate={{
                     y: [0, -10, 0],
-                    rotate: [0, 5, 0],
                   }}
-                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                  transition={{ duration: 4, repeat: Infinity }}
                 >
                   <Trophy className="w-8 h-8 text-yellow-400" />
                 </motion.div>
 
+                {/* Floating Star */}
                 <motion.div
-                  className="absolute bottom-8 left-8 glass-effect rounded-2xl p-4 group-hover:neon-glow"
+                  className="absolute bottom-8 left-8 glass-effect rounded-2xl p-4"
                   animate={{
                     y: [0, 10, 0],
-                    rotate: [0, -5, 0],
                   }}
-                  transition={{
-                    duration: 3,
-                    repeat: Number.POSITIVE_INFINITY,
-                    delay: 1.5,
-                  }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 2 }}
                 >
                   <Star className="w-8 h-8 text-blue-400" />
                 </motion.div>
-
-                {/* Animated Border */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl border-4 border-gradient-to-r from-yellow-400/50 to-green-400/50"
-                  animate={{
-                    borderColor: [
-                      "rgba(251, 191, 36, 0.5)",
-                      "rgba(34, 197, 94, 0.5)",
-                      "rgba(251, 191, 36, 0.5)",
-                    ],
-                  }}
-                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-                />
               </div>
             </motion.div>
           </div>
@@ -422,7 +351,7 @@ export default function AboutPage() {
               </span>
             </div>
 
-            <h2 className="text-5xl md:text-6xl font-black mb-6 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="text-white">What We</span>{" "}
               <span className="gradient-text">Stand For</span>
             </h2>
@@ -446,7 +375,7 @@ export default function AboutPage() {
                     <div className="w-20 h-20 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl mx-auto flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                       <value.icon className={`w-10 h-10 ${value.color}`} />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4 orbitron">
+                    <h3 className="text-2xl font-bold text-white mb-4">
                       {value.title}
                     </h3>
                   </div>
@@ -462,45 +391,31 @@ export default function AboutPage() {
 
       {/* Team Section */}
       <section className="py-32 px-4 relative overflow-hidden">
-        {/* SPECTACULAR Team Background Effects */}
+        {/* Background Effects */}
         <div className="absolute inset-0">
-          {/* Animated Team Formation Pattern */}
+          {/* Formation Pattern (Reduced & Static) */}
           <div className="absolute inset-0 opacity-10">
-            {[...Array(30)].map((_, i) => (
-              <motion.div
+            {[...Array(15)].map((_, i) => (
+              <div
                 key={i}
-                className="absolute w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-blue-400"
+                className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-green-400 to-blue-400"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 0.8, 0.3],
-                  y: [0, -30, 0],
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  delay: Math.random() * 2,
                 }}
               />
             ))}
           </div>
 
-          {/* Leadership Aura */}
-          <motion.div
+          {/* Simple Aura */}
+          <div
             className="absolute inset-0"
             style={{
               background: `
-                radial-gradient(ellipse at 25% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)
-              `,
+          radial-gradient(ellipse at 25% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%),
+          radial-gradient(ellipse at 75% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)
+        `,
             }}
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-            }}
-            transition={{ duration: 15, repeat: Number.POSITIVE_INFINITY }}
           />
         </div>
 
@@ -512,24 +427,14 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <motion.div
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-blue-400/20 backdrop-blur-sm border border-green-500/30 rounded-full px-6 py-3 mb-8"
-              animate={{
-                boxShadow: [
-                  "0 0 20px rgba(34, 197, 94, 0.3)",
-                  "0 0 40px rgba(34, 197, 94, 0.6)",
-                  "0 0 20px rgba(34, 197, 94, 0.3)",
-                ],
-              }}
-              transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY }}
-            >
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-blue-400/20 backdrop-blur-sm border border-green-500/30 rounded-full px-6 py-3 mb-8">
               <Users className="w-5 h-5 text-green-400" />
               <span className="text-green-400 font-semibold uppercase tracking-wider">
                 Leadership Team
               </span>
-            </motion.div>
+            </div>
 
-            <h2 className="text-5xl md:text-6xl font-black mb-6 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="text-white">Meet Our</span>{" "}
               <span className="gradient-text">Leaders</span>
             </h2>
@@ -549,103 +454,37 @@ export default function AboutPage() {
                 className="group"
               >
                 <div className="premium-card hover-lift overflow-hidden group-hover:neon-glow relative">
-                  {/* Card Aura Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    animate={{
-                      backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                    }}
-                    transition={{
-                      duration: 5,
-                      repeat: Number.POSITIVE_INFINITY,
-                    }}
-                  />
-
                   <div className="relative overflow-hidden rounded-2xl mb-6 group">
                     <motion.img
                       src={member.image || "/placeholder.svg"}
                       alt={member.name}
-                      className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-                      whileHover={{ scale: 1.1 }}
+                      className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-                    {/* Floating Profile Ring */}
-                    <motion.div
-                      className="absolute inset-0 rounded-2xl border-4 border-gradient-to-r from-green-400/50 to-blue-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 10,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "linear",
-                      }}
-                    />
-
-                    {/* Social Links Overlay with Effects */}
+                    {/* Removed continuous rotating border */}
+                    {/* Social Links (Static, Hover scale) */}
                     <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="flex space-x-3">
                         {["T", "L"].map((social, socialIndex) => (
-                          <motion.div
+                          <div
                             key={socialIndex}
-                            className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors cursor-pointer relative overflow-hidden"
-                            whileHover={{ scale: 1.1, rotate: 360 }}
-                            transition={{ duration: 0.3 }}
+                            className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all transform hover:scale-110 cursor-pointer"
                           >
-                            {/* Social Icon Glow */}
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-br from-green-400/30 to-blue-400/30 rounded-full"
-                              animate={{
-                                opacity: [0.3, 0.7, 0.3],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Number.POSITIVE_INFINITY,
-                                delay: socialIndex * 0.5,
-                              }}
-                            />
-                            <span className="text-white text-sm relative z-10">
-                              {social}
-                            </span>
-                          </motion.div>
+                            <span className="text-white text-sm">{social}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
                   </div>
 
                   <div className="text-center space-y-4 relative z-10">
-                    <div>
-                      <motion.h3
-                        className="text-2xl font-bold text-white mb-2 orbitron group-hover:gradient-text transition-all duration-300"
-                        animate={{
-                          scale: [1, 1.02, 1],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Number.POSITIVE_INFINITY,
-                          delay: index * 0.5,
-                        }}
-                      >
-                        {member.name}
-                      </motion.h3>
-                      <motion.div
-                        animate={{
-                          boxShadow: [
-                            "0 0 10px rgba(251, 191, 36, 0.3)",
-                            "0 0 20px rgba(251, 191, 36, 0.5)",
-                            "0 0 10px rgba(251, 191, 36, 0.3)",
-                          ],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Number.POSITIVE_INFINITY,
-                          delay: index * 0.3,
-                        }}
-                      >
-                        <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-1 rounded-full">
-                          {member.role}
-                        </Badge>
-                      </motion.div>
-                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:gradient-text transition-all duration-300">
+                      {member.name}
+                    </h3>
+                    <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-1 rounded-full">
+                      {member.role}
+                    </Badge>
                     <p className="text-gray-400 text-sm leading-relaxed">
                       {member.bio}
                     </p>
@@ -675,7 +514,7 @@ export default function AboutPage() {
               </span>
             </div>
 
-            <h2 className="text-5xl md:text-6xl font-black mb-6 orbitron">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               <span className="gradient-text">Ten</span>{" "}
               <span className="text-white">Districts</span>
             </h2>
@@ -709,7 +548,7 @@ export default function AboutPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     <Trophy className="w-8 h-8 text-black" />
                   </div>
-                  <h3 className="text-white font-bold text-sm orbitron group-hover:gradient-text transition-all duration-300">
+                  <h3 className="text-white font-bold text-sm  group-hover:gradient-text transition-all duration-300">
                     {district}
                   </h3>
                 </div>

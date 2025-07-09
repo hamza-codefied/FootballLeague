@@ -53,7 +53,7 @@ export default function Navigation() {
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-full blur-xl"></div>
               </div>
               <div className="hidden sm:block">
-                <span className="text-2xl font-bold orbitron gradient-text">
+                <span className="text-2xl font-bold gradient-text">
                   LUTON SYLHET
                 </span>
                 <div className="text-xs text-gray-400 uppercase tracking-wider">
