@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { API_URL } from "./use-fixtures";
+import { useAuth } from "@/context/AuthContext";
 
 export interface CreateFixturePayload {
   home_team: string;
@@ -11,18 +12,29 @@ export interface CreateFixturePayload {
   round: string;
 }
 
-export const createFixture = async (fixture: CreateFixturePayload) => {
-  const response = await axios.post(`${API_URL}/fixture.php`, fixture);
+export const createFixture = async (
+  fixture: CreateFixturePayload,
+  token: string
+) => {
+  const response = await axios.post(`${API_URL}/fixture.php`, fixture, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
   return response.data;
 };
 
 export const useCreateFixture = () => {
   const queryClient = useQueryClient();
+  const { token } = useAuth();
 
   return useMutation({
-    mutationFn: (fixture: CreateFixturePayload) => createFixture(fixture),
+    mutationFn: (fixture: CreateFixturePayload) => {
+      if (!token) throw new Error("No token found");
+      return createFixture(fixture, token);
+    },
     onSuccess: () => {
-      // Optionally refetch fixtures list after creating one
       queryClient.invalidateQueries({ queryKey: ["fixtures"] });
     },
   });

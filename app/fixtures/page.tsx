@@ -33,13 +33,7 @@ export default function FixturesPage() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
 
-  const {
-    data: fixtures = [],
-    isLoading: fixturesLoading,
-    isFetching: fixturesFetching,
-    isError: fixturesError,
-    refetch: refetchFixtures,
-  } = useFixtures();
+  const { data: fixtures = [] } = useFixtures();
 
   return (
     <div className="min-h-screen animated-bg text-white overflow-hidden">

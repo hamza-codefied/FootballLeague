@@ -1,38 +1,51 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Eye, EyeOff, Mail, Lock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { login as loginApi } from "@/lib/auth";
+import toast from "react-hot-toast";
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const { login, user } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const { mutate, isPending } = useMutation({
+    mutationFn: () => loginApi({ email, password }),
+    onSuccess: (data) => {
+      console.log("Login success data:", data);
 
-    // Simulate login process
-    setTimeout(() => {
-      if (email === "admin@league.com" && password === "admin123") {
-        router.push("/admin")
+      login(data.user, data.token);
+      toast.success("Login successful!");
+
+      if (data.user.role === "admin") {
+        router.push("/admin");
       } else {
-        router.push("/dashboard")
+        router.push("/dashboard");
       }
-      setIsLoading(false)
-    }, 1500)
-  }
+    },
+    onError: (error: any) => {
+      toast.error(error.response?.data?.message || "Login failed.");
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutate();
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
@@ -57,15 +70,21 @@ export default function LoginPage() {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             >
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2">
-                <img src="/images/logo.png" alt="Luton Sylhet Division Cup" className="w-full h-full object-cover rounded-full" />
+                <img
+                  src="/images/logo.png"
+                  alt="Luton Sylhet Division Cup"
+                  className="w-full h-full object-cover rounded-full"
+                />
               </div>
             </motion.div>
-            <CardTitle className="text-2xl font-bold text-white">Welcome Back</CardTitle>
+            <CardTitle className="text-2xl font-bold text-white">
+              Welcome Back
+            </CardTitle>
             <p className="text-gray-400 mt-2">Sign in to your account</p>
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-gray-300">
                   Email
@@ -104,7 +123,11 @@ export default function LoginPage() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
                   >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -120,13 +143,20 @@ export default function LoginPage() {
                     Remember me
                   </Label>
                 </div>
-                <Link href="#" className="text-sm text-red-400 hover:text-red-300">
+                <Link
+                  href="#"
+                  className="text-sm text-red-400 hover:text-red-300"
+                >
                   Forgot password?
                 </Link>
               </div>
 
-              <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-3" disabled={isLoading}>
-                {isLoading ? (
+              <Button
+                type="submit"
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-3"
+                disabled={isPending}
+              >
+                {isPending ? (
                   <div className="flex items-center space-x-2">
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     <span>Signing in...</span>
@@ -140,22 +170,17 @@ export default function LoginPage() {
             <div className="mt-6 text-center">
               <p className="text-gray-400">
                 Don't have an account?{" "}
-                <Link href="/signup" className="text-red-400 hover:text-red-300 font-medium">
+                <Link
+                  href="/signup"
+                  className="text-red-400 hover:text-red-300 font-medium"
+                >
                   Sign up
                 </Link>
               </p>
-            </div>
-
-            <div className="mt-6 pt-6 border-t border-gray-700">
-              <div className="text-center text-sm text-gray-400">
-                <p className="mb-2">Demo Credentials:</p>
-                <p>Admin: admin@league.com / admin123</p>
-                <p>User: user@league.com / user123</p>
-              </div>
             </div>
           </CardContent>
         </Card>
       </motion.div>
     </div>
-  )
+  );
 }

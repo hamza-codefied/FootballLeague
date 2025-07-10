@@ -137,7 +137,7 @@ export default function HomePage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-green-400/20 backdrop-blur-sm border border-yellow-400/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-green-400/20 backdrop-blur-sm border border-yellow-400/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 mt-20">
               <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
               <span className="text-yellow-400 font-semibold text-xs sm:text-sm">
                 SEASON 2025 LIVE
@@ -259,7 +259,7 @@ export default function HomePage() {
 
           {/* Fixtures Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-            {fixtures?.map((fixture, index) => (
+            {fixtures?.slice(0, 3).map((fixture, index) => (
               <motion.div
                 key={fixture.id}
                 initial={{ opacity: 0, y: 50 }}

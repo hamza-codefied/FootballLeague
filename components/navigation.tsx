@@ -3,10 +3,31 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User, LogIn, Search, Bell } from "lucide-react";
+import {
+  Menu,
+  X,
+  User,
+  LogIn,
+  Search,
+  Bell,
+  LogOut,
+  LayoutDashboard,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/AuthContext";
+import toast from "react-hot-toast";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Navigation() {
+  const { user, logout } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,6 +44,24 @@ export default function Navigation() {
     { href: "/about", label: "About" },
     { href: "/fixtures", label: "Fixtures" },
   ];
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logged out successfully");
+    router.push("/login");
+  };
+
+  const handleGoToDashboard = () => {
+    if (user?.role === "admin") {
+      router.push("/admin");
+    } else {
+      router.push("/dashboard");
+    }
+    setIsOpen(false);
+  };
+
+  const isOnDashboard =
+    pathname.startsWith("/dashboard") || pathname.startsWith("/admin");
 
   return (
     <motion.nav
@@ -85,35 +124,82 @@ export default function Navigation() {
 
           {/* Right Side Icons */}
           <div className="hidden lg:flex items-center space-x-4">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300"
-              >
-                <Link href="/login" className="flex items-center space-x-2">
-                  <LogIn className="w-4 h-4" />
-                  <span>Login</span>
-                </Link>
-              </Button>
-            </motion.div>
+            {!user ? (
+              <>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300"
+                  >
+                    <Link href="/login" className="flex items-center space-x-2">
+                      <LogIn className="w-4 h-4" />
+                      <span>Login</span>
+                    </Link>
+                  </Button>
+                </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <Button className="btn-primary">
-                <Link href="/signup" className="flex items-center space-x-2">
-                  <User className="w-4 h-4" />
-                  <span>Sign Up</span>
-                </Link>
-              </Button>
-            </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <Button className="btn-primary">
+                    <Link
+                      href="/signup"
+                      className="flex items-center space-x-2"
+                    >
+                      <User className="w-4 h-4" />
+                      <span>Sign Up</span>
+                    </Link>
+                  </Button>
+                </motion.div>
+              </>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300"
+                    >
+                      <User className="w-5 h-5 mr-2" />
+                      {user.fullname.split(" ")[0]}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="end"
+                    className="bg-gray-800 border-gray-600 text-white"
+                  >
+                    {!isOnDashboard && (
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-gray-300 hover:text-white"
+                        onClick={handleGoToDashboard}
+                      >
+                        <LayoutDashboard className="w-4 h-4" />
+                        <span>Go to Dashboard</span>
+                      </Button>
+                    )}
+                    <DropdownMenuItem
+                      onClick={handleLogout}
+                      className="flex items-center space-x-2"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Logout</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </motion.div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -159,7 +245,7 @@ export default function Navigation() {
               transition={{ duration: 0.3 }}
             >
               <div className="p-6 space-y-6">
-                {navItems.map((item, index) => (
+                {navItems.map((item: any, index: number) => (
                   <motion.div
                     key={item.href}
                     initial={{ opacity: 0, x: -20 }}
@@ -177,24 +263,58 @@ export default function Navigation() {
                 ))}
 
                 <div className="pt-6 border-t border-gray-800 space-y-4">
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-gray-300 hover:text-white"
-                  >
-                    <Link href="/login" className="flex items-center space-x-2">
-                      <LogIn className="w-4 h-4" />
-                      <span>Login</span>
-                    </Link>
-                  </Button>
-                  <Button className="w-full btn-primary">
-                    <Link
-                      href="/signup"
-                      className="flex items-center space-x-2"
-                    >
-                      <User className="w-4 h-4" />
-                      <span>Sign Up</span>
-                    </Link>
-                  </Button>
+                  {!user ? (
+                    <>
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-gray-300 hover:text-white"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Link
+                          href="/login"
+                          className="flex items-center space-x-2 w-full"
+                        >
+                          <LogIn className="w-4 h-4" />
+                          <span>Login</span>
+                        </Link>
+                      </Button>
+
+                      <Button
+                        className="w-full btn-primary"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <Link
+                          href="/signup"
+                          className="flex items-center space-x-2 w-full"
+                        >
+                          <User className="w-4 h-4" />
+                          <span>Sign Up</span>
+                        </Link>
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      {!isOnDashboard && (
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-gray-300 hover:text-white"
+                          onClick={handleGoToDashboard}
+                        >
+                          <LayoutDashboard className="w-4 h-4" />
+                          <span>Go to Dashboard</span>
+                        </Button>
+                      )}
+
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-gray-300 hover:text-white"
+                        onClick={handleLogout}
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Logout</span>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>
