@@ -15,6 +15,9 @@ import {
   Award,
   Mail,
   Phone,
+  Crown,
+  Star,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -23,39 +26,6 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { useQuery } from "@tanstack/react-query";
 import { useFixtures } from "@/hooks/use-fixtures";
-
-const blogPosts = [
-  {
-    id: 1,
-    title: "Season 2025 Kicks Off with Spectacular Opening Ceremony",
-    excerpt:
-      "The new football season promises thrilling encounters between top district teams with enhanced facilities and new talent.",
-    date: "2025-01-10",
-    image: "/images/blog-news1.jpg",
-    category: "News",
-    readTime: "3 min read",
-  },
-  {
-    id: 2,
-    title: "Major Player Transfers Shake Up League Dynamics",
-    excerpt:
-      "Latest updates on player movements across all participating teams as clubs prepare for the upcoming season.",
-    date: "2025-01-08",
-    image: "/images/blog-news2.jpg",
-    category: "Transfers",
-    readTime: "5 min read",
-  },
-  {
-    id: 3,
-    title: "State-of-the-Art Stadium Upgrades Complete",
-    excerpt:
-      "Major improvements to facilities enhance the match-day experience with new technology and amenities.",
-    date: "2025-01-05",
-    image: "/images/blog-news3.jpg",
-    category: "Infrastructure",
-    readTime: "4 min read",
-  },
-];
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -78,6 +48,90 @@ export default function HomePage() {
     isError: fixturesError,
     refetch: refetchFixtures,
   } = useFixtures();
+
+  // Teams data
+  const teams = [
+    {
+      id: 1,
+      name: "Dakshin Surma",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Ahmed Hassan", "Karim Rahman", "Nasir Ahmed"],
+      color: "from-red-500 to-red-600",
+      accent: "text-red-400",
+    },
+    {
+      id: 2,
+      name: "Golapgonj",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Rafiq Islam", "Salam Khan", "Habib Miah"],
+      color: "from-blue-500 to-blue-600",
+      accent: "text-blue-400",
+    },
+    {
+      id: 3,
+      name: "Fenchugonj",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Mizanur Rahman", "Shahid Ullah", "Rashed Ali"],
+      color: "from-green-500 to-green-600",
+      accent: "text-green-400",
+    },
+    {
+      id: 4,
+      name: "Balaganj",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Faruk Ahmed", "Belal Hossain", "Monir Khan"],
+      color: "from-purple-500 to-purple-600",
+      accent: "text-purple-400",
+    },
+    {
+      id: 5,
+      name: "Jagannathpur",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Jahangir Alam", "Rubel Miah", "Saiful Islam"],
+      color: "from-yellow-500 to-orange-500",
+      accent: "text-yellow-400",
+    },
+    {
+      id: 6,
+      name: "Bishwanath",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Aminul Haque", "Delwar Hossain", "Nazrul Islam"],
+      color: "from-indigo-500 to-indigo-600",
+      accent: "text-indigo-400",
+    },
+    {
+      id: 7,
+      name: "Beani Bazar",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Shamsul Alam", "Mokbul Ahmed", "Hanif Miah"],
+      color: "from-pink-500 to-pink-600",
+      accent: "text-pink-400",
+    },
+    {
+      id: 8,
+      name: "Habigonj",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Abdur Rahman", "Liton Miah", "Sumon Khan"],
+      color: "from-teal-500 to-teal-600",
+      accent: "text-teal-400",
+    },
+    {
+      id: 9,
+      name: "Moulvibazar",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Kamrul Hassan", "Iqbal Ahmed", "Firoz Alam"],
+      color: "from-cyan-500 to-cyan-600",
+      accent: "text-cyan-400",
+    },
+    {
+      id: 10,
+      name: "Osmaninagar",
+      logo: "/placeholder.svg?height=80&width=80",
+      players: ["Masud Rana", "Jewel Miah", "Alamgir Hossain"],
+      color: "from-emerald-500 to-emerald-600",
+      accent: "text-emerald-400",
+    },
+  ];
 
   return (
     <div className="min-h-screen animated-bg text-white overflow-hidden">
@@ -218,6 +272,236 @@ export default function HomePage() {
             ))}
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* Teams Section */}
+      <section className="py-20 sm:py-24 md:py-32 px-4 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Floating Orbs */}
+          <motion.div
+            className="absolute top-1/4 left-1/6 w-32 h-32 sm:w-48 sm:h-48 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%)",
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY }}
+          />
+          <motion.div
+            className="absolute bottom-1/3 right-1/6 w-40 h-40 sm:w-56 sm:h-56 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(26, 95, 63, 0.1) 0%, transparent 70%)",
+            }}
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Number.POSITIVE_INFINITY,
+              delay: 2,
+            }}
+          />
+
+          {/* Geometric Shapes */}
+          <div className="absolute inset-0 opacity-5">
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-8 h-8 sm:w-12 sm:h-12"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                  background: "linear-gradient(45deg, #d4af37, #1a5f3f)",
+                }}
+                animate={{
+                  rotate: [0, 360],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 15,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: i * 0.5,
+                  ease: "linear",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Section Header */}
+          <motion.div
+            className="text-center mb-12 sm:mb-16 md:mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-400/20 to-green-400/20 backdrop-blur-sm border border-yellow-400/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6"
+              animate={{
+                boxShadow: [
+                  "0 0 20px rgba(212, 175, 55, 0.3)",
+                  "0 0 40px rgba(212, 175, 55, 0.5)",
+                  "0 0 20px rgba(212, 175, 55, 0.3)",
+                ],
+              }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+            >
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+              <span className="text-xs sm:text-sm md:text-base text-yellow-400 font-semibold uppercase tracking-wider">
+                Championship Teams
+              </span>
+            </motion.div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6">
+              <span className="text-white">Meet Our</span>{" "}
+              <span className="gradient-text">Warriors</span>
+            </h2>
+
+            <p className="text-sm sm:text-base md:text-xl text-gray-400 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto">
+              Ten elite teams, each representing their district with pride and
+              passion
+            </p>
+          </motion.div>
+
+          {/* Teams Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            {teams.map((team, index) => (
+              <motion.div
+                key={team.name}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100,
+                }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Link href={`/teams`}>
+                  <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden min-h-[320px] sm:min-h-[350px] cursor-pointer">
+                    {/* Card Background Effect */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-br ${team.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                      animate={{
+                        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Number.POSITIVE_INFINITY,
+                      }}
+                    />
+
+                    {/* Team Logo */}
+                    <div className="text-center mb-6 relative z-10">
+                      <motion.div
+                        className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${team.color} rounded-full mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.8 }}
+                      >
+                        <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                      </motion.div>
+
+                      <motion.h3
+                        className="text-lg sm:text-xl font-bold text-white group-hover:gradient-text transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {team.name}
+                      </motion.h3>
+                    </div>
+
+                    {/* Star Players */}
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center justify-center mb-4">
+                        <Star className={`w-4 h-4 ${team.accent} mr-2`} />
+                        <span className="text-gray-400 text-sm font-semibold uppercase tracking-wider">
+                          Star Players
+                        </span>
+                      </div>
+
+                      {team.players.map((player, playerIndex) => (
+                        <motion.div
+                          key={player}
+                          className="flex items-center space-x-3 p-2 rounded-lg bg-gray-800/30 backdrop-blur-sm group-hover:bg-gray-800/50 transition-colors"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{
+                            delay: index * 0.1 + playerIndex * 0.1,
+                          }}
+                          viewport={{ once: true }}
+                        >
+                          <div
+                            className={`w-8 h-8 bg-gradient-to-br ${team.color} rounded-full flex items-center justify-center flex-shrink-0`}
+                          >
+                            <span className="text-white font-bold text-xs">
+                              {playerIndex + 1}
+                            </span>
+                          </div>
+                          <span className="text-white text-sm font-medium truncate">
+                            {player}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Team Stats/Badge */}
+                    <div className="mt-6 pt-4 border-t border-gray-800 relative z-10">
+                      <div className="flex items-center justify-between">
+                        <Badge
+                          className={`bg-gradient-to-r ${team.color} text-white px-3 py-1 text-xs`}
+                        >
+                          ACTIVE
+                        </Badge>
+                        <div className="flex items-center space-x-1">
+                          <Crown className={`w-4 h-4 ${team.accent}`} />
+                          <span className="text-gray-400 text-xs">
+                            District Champions
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Hover Overlay */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      initial={false}
+                    />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Section Footer */}
+          <motion.div
+            className="text-center mt-12 sm:mt-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-gray-400 text-sm sm:text-base mb-6">
+              Each team brings unique talent and fierce determination to the
+              championship
+            </p>
+            <Button className="btn-primary text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 group">
+              <Link href="/teams" className="flex items-center space-x-2">
+                <span>View All Teams</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
       </section>
 
       {/* Upcoming Fixtures Section */}
@@ -523,184 +807,6 @@ export default function HomePage() {
             ))}
           </div>
         </motion.div>
-      </section>
-
-      {/* Blog Section */}
-      <section className="py-20 sm:py-28 md:py-32 px-4 relative overflow-hidden">
-        {/* SPECTACULAR Background Effects */}
-        <div className="absolute inset-0">
-          {/* Animated News Paper Pattern */}
-          <motion.div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: `
-                repeating-linear-gradient(
-                  45deg,
-                  transparent,
-                  transparent 10px,
-                  rgba(212, 175, 55, 0.1) 10px,
-                  rgba(212, 175, 55, 0.1) 20px
-                )
-              `,
-            }}
-            animate={{
-              backgroundPosition: ["0px 0px", "40px 40px"],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-          />
-
-          {/* Floating News Icons */}
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-6 h-6 bg-gradient-to-br from-purple-400/20 to-blue-400/20 rounded"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                rotate: [0, 180, 360],
-                opacity: [0.2, 0.6, 0.2],
-              }}
-              transition={{
-                duration: 6 + Math.random() * 2,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: Math.random() * 3,
-              }}
-            />
-          ))}
-
-          {/* Gradient Waves */}
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              background: `
-                radial-gradient(ellipse at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)
-              `,
-            }}
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-            }}
-            transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY }}
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-blue-400/20 backdrop-blur-sm border border-purple-500/30 rounded-full px-6 py-3 mb-6"
-              animate={{
-                boxShadow: [
-                  "0 0 20px rgba(147, 51, 234, 0.3)",
-                  "0 0 40px rgba(147, 51, 234, 0.6)",
-                  "0 0 20px rgba(147, 51, 234, 0.3)",
-                ],
-              }}
-              transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY }}
-            >
-              <Target className="w-5 h-5 text-purple-400" />
-              <span className="text-purple-400 font-semibold uppercase tracking-wider">
-                Latest Updates
-              </span>
-            </motion.div>
-
-            <h2 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="text-white">League</span>{" "}
-              <span className="gradient-text">News</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Stay updated with the latest happenings in the league
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="premium-card hover-lift overflow-hidden group-hover:neon-glow relative">
-                  {/* Card Glow Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    animate={{
-                      backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Number.POSITIVE_INFINITY,
-                    }}
-                  />
-
-                  <div className="relative overflow-hidden rounded-xl mb-6">
-                    <motion.img
-                      src={post.image || "/placeholder.svg"}
-                      alt={post.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      whileHover={{ scale: 1.1 }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-
-                    {/* Floating Category Badge */}
-                    <motion.div
-                      className="absolute top-4 left-4"
-                      animate={{
-                        y: [0, -5, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
-                      }}
-                    >
-                      <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold">
-                        {post.category}
-                      </Badge>
-                    </motion.div>
-
-                    <div className="absolute bottom-4 right-4 text-white text-xs bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full">
-                      {post.readTime}
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 relative z-10">
-                    <div className="text-sm text-gray-400">
-                      {new Date(post.date).toLocaleDateString()}
-                    </div>
-                    <motion.h3
-                      className="text-xl font-bold text-white group-hover:gradient-text transition-all duration-300 line-clamp-2"
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      {post.title}
-                    </motion.h3>
-                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
-                      {post.excerpt}
-                    </p>
-
-                    <Button className="btn-secondary w-full group-hover:btn-primary transition-all duration-300">
-                      Read More
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Contact Section */}
