@@ -22,213 +22,12 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import { Team } from "@/types/team";
 
-export default function TeamDetailPage() {
+export default function TeamDetailPage({ team }: { team: Team }) {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
   const y2 = useTransform(scrollY, [0, 300], [0, -100]);
-
-  // Mock team data - in real app, this would come from API based on ID
-  const team = {
-    id: 1,
-    name: "Dakshin Surma",
-    fullName: "Dakshin Surma Football Club",
-    founded: "2018",
-    location: "Dakshin Surma, Sylhet",
-    stadium: "Surma District Stadium",
-    capacity: "15,000",
-    coach: "Mohammad Rafiqul Islam",
-    captain: "Ahmed Hassan",
-    colors: { primary: "from-red-500 to-red-600", accent: "text-red-400" },
-    logo: "/images/dakshin.png",
-      heroImage: "/placeholder.svg?height=400&width=800",
-    description:
-      "Dakshin Surma FC is one of the most prestigious football clubs in the Sylhet Division Cup. Founded in 2018, the club has quickly risen through the ranks to become a formidable force in district football.",
-    achievements: ["District Champions 2023", "Division Cup Runners-up 2022"],
-    stats: {
-      matchesPlayed: 28,
-      wins: 18,
-      draws: 6,
-      losses: 4,
-      goalsFor: 52,
-      goalsAgainst: 23,
-      points: 60,
-      position: 2,
-    },
-    players: [
-      {
-        id: 1,
-        name: "Ahmed Hassan",
-        position: "Forward",
-        age: 26,
-        goals: 15,
-        assists: 8,
-        matches: 25,
-        isCaptain: true,
-        isStarPlayer: true,
-      },
-      {
-        id: 2,
-        name: "Karim Rahman",
-        position: "Midfielder",
-        age: 24,
-        goals: 8,
-        assists: 12,
-        matches: 28,
-        isCaptain: false,
-        isStarPlayer: true,
-      },
-      {
-        id: 3,
-        name: "Nasir Ahmed",
-        position: "Defender",
-        age: 28,
-        goals: 3,
-        assists: 4,
-        matches: 26,
-        isCaptain: false,
-        isStarPlayer: true,
-      },
-      {
-        id: 4,
-        name: "Rashid Miah",
-        position: "Goalkeeper",
-        age: 30,
-        goals: 0,
-        assists: 0,
-        matches: 28,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 5,
-        name: "Salam Khan",
-        position: "Defender",
-        age: 25,
-        goals: 2,
-        assists: 3,
-        matches: 24,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 6,
-        name: "Habib Ullah",
-        position: "Midfielder",
-        age: 23,
-        goals: 6,
-        assists: 7,
-        matches: 22,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 7,
-        name: "Farhan Ali",
-        position: "Forward",
-        age: 22,
-        goals: 10,
-        assists: 5,
-        matches: 20,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 8,
-        name: "Zahidul Islam",
-        position: "Midfielder",
-        age: 27,
-        goals: 7,
-        assists: 9,
-        matches: 26,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 9,
-        name: "Iqbal Hossain",
-        position: "Defender",
-        age: 29,
-        goals: 1,
-        assists: 2,
-        matches: 25,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 10,
-        name: "Shakil Rahman",
-        position: "Midfielder",
-        age: 24,
-        goals: 4,
-        assists: 6,
-        matches: 24,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 11,
-        name: "Rafsan Chowdhury",
-        position: "Forward",
-        age: 23,
-        goals: 9,
-        assists: 4,
-        matches: 23,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 12,
-        name: "Sumon Ahmed",
-        position: "Defender",
-        age: 26,
-        goals: 0,
-        assists: 1,
-        matches: 20,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 13,
-        name: "Mokhlesur Rahman",
-        position: "Goalkeeper",
-        age: 31,
-        goals: 0,
-        assists: 0,
-        matches: 18,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 14,
-        name: "Fahim Miah",
-        position: "Midfielder",
-        age: 22,
-        goals: 5,
-        assists: 3,
-        matches: 19,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-      {
-        id: 15,
-        name: "Jashim Uddin",
-        position: "Defender",
-        age: 28,
-        goals: 2,
-        assists: 1,
-        matches: 21,
-        isCaptain: false,
-        isStarPlayer: false,
-      },
-    ],
-
-    contact: {
-      phone: "+880 123 456 789",
-      email: "info@dakshinsurmafc.com",
-      address: "Surma Stadium Road, Dakshin Surma, Sylhet",
-    },
-  };
 
   return (
     <div className="min-h-screen animated-bg text-white overflow-hidden">
@@ -280,7 +79,7 @@ export default function TeamDetailPage() {
         >
           {/* Team Logo & Name */}
           <motion.div
-            className="mb-8 mt-16"
+            className="mb-8 mt-20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -288,11 +87,9 @@ export default function TeamDetailPage() {
             <motion.div
               style={{
                 backgroundImage: `url(${team.logo})`,
-                backgroundSize:"cover",
+                backgroundSize: "cover",
               }}
               className={`w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br ${team.colors.primary} rounded-full mx-auto flex items-center justify-center mb-6 shadow-2xl`}
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.8 }}
             ></motion.div>
 
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-4">
@@ -309,7 +106,7 @@ export default function TeamDetailPage() {
                 Founded {team.founded}
               </Badge>
               <Badge className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-4 py-2">
-                Position #{team.stats.position}
+                Position : {team.stats.position}
               </Badge>
               <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2">
                 {team.stats.points} Points
@@ -382,7 +179,7 @@ export default function TeamDetailPage() {
               <h2 className="text-3xl sm:text-4xl font-black mb-6">
                 About <span className="gradient-text">{team.name}</span>
               </h2>
-              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              <p className="text-gray-300 text-sm leading-relaxed mb-8">
                 {team.description}
               </p>
 
@@ -392,7 +189,6 @@ export default function TeamDetailPage() {
                   { label: "Founded", value: team.founded, icon: Calendar },
                   { label: "Location", value: team.location, icon: MapPin },
                   { label: "Stadium", value: team.stadium, icon: Shield },
-                  { label: "Capacity", value: team.capacity, icon: Users },
                 ].map((info, index) => (
                   <motion.div
                     key={index}
@@ -424,19 +220,32 @@ export default function TeamDetailPage() {
                   Achievements
                 </h3>
                 <div className="space-y-2">
-                  {team.achievements.map((achievement, index) => (
+                  {team.achievements.length > 0 ? (
+                    team.achievements.map((achievement, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex items-center space-x-3 p-3 glass-effect rounded-lg"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <Award className={`w-4 h-4 ${team.colors.accent}`} />
+                        <span className="text-gray-300">{achievement}</span>
+                      </motion.div>
+                    ))
+                  ) : (
                     <motion.div
-                      key={index}
                       className="flex items-center space-x-3 p-3 glass-effect rounded-lg"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ duration: 0.5 }}
                       viewport={{ once: true }}
                     >
                       <Award className={`w-4 h-4 ${team.colors.accent}`} />
-                      <span className="text-gray-300">{achievement}</span>
+                      <span className="text-gray-400 italic">None so far</span>
                     </motion.div>
-                  ))}
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -458,33 +267,20 @@ export default function TeamDetailPage() {
                   {[
                     {
                       label: "Win Rate",
-                      value: Math.round(
-                        (team.stats.wins / team.stats.matchesPlayed) * 100
-                      ),
+                      value: 0,
                       color: "from-green-500 to-green-600",
                     },
                     {
                       label: "Goals Scored",
-                      value: Math.round(
-                        (team.stats.goalsFor / team.stats.matchesPlayed) * 10
-                      ),
+                      value: 0,
                       color: "from-blue-500 to-blue-600",
-                    },
-                    {
-                      label: "Defense",
-                      value: Math.round(
-                        ((team.stats.matchesPlayed - team.stats.goalsAgainst) /
-                          team.stats.matchesPlayed) *
-                          100
-                      ),
-                      color: "from-purple-500 to-purple-600",
                     },
                   ].map((stat, index) => (
                     <div key={index}>
                       <div className="flex justify-between mb-2">
                         <span className="text-gray-300">{stat.label}</span>
                         <span className="text-white font-semibold">
-                          {stat.value}%
+                          {/* {stat.value} */}0%
                         </span>
                       </div>
                       <div className="w-full bg-gray-800 rounded-full h-3">
@@ -603,25 +399,13 @@ export default function TeamDetailPage() {
               Get in <span className="gradient-text">Touch</span>
             </h2>
 
-            <div className="grid sm:grid-cols-3 gap-8 mb-12">
+            <div className="grid sm:grid-cols-1 gap-8 mb-12">
               {[
                 {
                   icon: Phone,
                   label: "Phone",
                   value: team.contact.phone,
                   color: "from-green-500 to-green-600",
-                },
-                {
-                  icon: Mail,
-                  label: "Email",
-                  value: team.contact.email,
-                  color: "from-blue-500 to-blue-600",
-                },
-                {
-                  icon: MapPin,
-                  label: "Address",
-                  value: team.contact.address,
-                  color: "from-purple-500 to-purple-600",
                 },
               ].map((contact, index) => (
                 <motion.div
@@ -649,7 +433,7 @@ export default function TeamDetailPage() {
             <div className="flex justify-center space-x-6">
               {[
                 { icon: Facebook, color: "from-blue-500 to-blue-600" },
-                { icon: Twitter, color: "from-sky-500 to-sky-600" },
+          
                 { icon: Instagram, color: "from-pink-500 to-purple-600" },
               ].map((social, index) => (
                 <motion.div

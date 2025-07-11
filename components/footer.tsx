@@ -14,7 +14,14 @@ export default function Footer() {
                 alt="Luton Sylhet Division Cup"
                 className="w-8 h-8 object-contain"
               />
-              <span className="text-xl font-bold text-white">Luton Sylhet</span>
+              <div className="">
+                <span className="text-lg font-bold gradient-text">
+                  LUTON SYLHET
+                </span>
+                <div className="text-xs text-gray-400 uppercase tracking-wider">
+                  Division Cup
+                </div>
+              </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               The premier football league bringing together the best teams from
@@ -62,6 +69,11 @@ export default function Footer() {
               <div>Fenchugonj</div>
               <div>Balaganj</div>
               <div>Jagannathpur</div>
+              <div>Bishwanath</div>
+              <div>Beani Bazar</div>
+              <div>Habigonj</div>
+              <div>Moulvibazar</div>
+              <div>Osmaninagar</div>
             </div>
           </div>
 
@@ -71,7 +83,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <Mail className="w-4 h-4" />
-                <span>info@districtleague.com</span>
+                <span>info@lutonsylhetdivisioncup.com</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <Phone className="w-4 h-4" />
@@ -79,7 +91,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <MapPin className="w-4 h-4" />
-                <span>District Sports Complex</span>
+                <span>The Tokyo's Academy, Luton</span>
               </div>
             </div>
           </div>

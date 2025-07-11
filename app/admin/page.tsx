@@ -102,7 +102,7 @@ export default function AdminPage() {
   };
 
   return (
-    <ProtectedRoute>
+   
       <div className="min-h-screen bg-gray-900 text-white">
         <Navigation />
 
@@ -344,6 +344,6 @@ export default function AdminPage() {
           </div>
         </div>
       </div>
-    </ProtectedRoute>
+    
   );
 }

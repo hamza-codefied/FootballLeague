@@ -3,16 +3,17 @@
 import type React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
-import { signup } from "@/lib/auth";
+// import { useMutation } from "@tanstack/react-query";
+// import { signup } from "@/lib/auth";
 import toast from "react-hot-toast";
+import { teamsData } from "@/data/teams"; // Assuming teamsData is exported from a file like teamsData.ts
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,9 +21,12 @@ export default function SignupPage() {
     name: "",
     email: "",
     password: "",
+    uniqueCode: "", // Added optional uniqueCode field
   });
   const router = useRouter();
 
+  // Commented out API integration code for later use
+  /*
   const { mutate, isPending } = useMutation({
     mutationFn: () =>
       signup({
@@ -40,10 +44,31 @@ export default function SignupPage() {
       );
     },
   });
+  */
+
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    mutate();
+
+    if (formData.uniqueCode) {
+      const matchedTeam = teamsData.find(
+        (team) => team.code.toLowerCase() === formData.uniqueCode.toLowerCase()
+      );
+      if (matchedTeam) {
+        toast.success(
+          `You have been successfully registered in team ${matchedTeam.name}`
+        );
+        setIsRedirecting(true); // Show redirecting message
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000); // 2-second delay before redirect
+      } else {
+        toast.error("No team with such code exists.");
+      }
+    } else {
+      toast.error("No team with such code exists.");
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,8 +78,16 @@ export default function SignupPage() {
     });
   };
 
+  {
+    isRedirecting && (
+      <div className="mt-4 text-green-400 font-medium text-center">
+        Redirecting to login...
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4 py-4">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-500/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
@@ -157,19 +190,38 @@ export default function SignupPage() {
                 </div>
               </div>
 
+              <div className="space-y-2">
+                <Label htmlFor="uniqueCode" className="text-gray-300">
+                  Team Code (Optional)
+                </Label>
+                <div className="relative">
+                  <Code className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input
+                    id="uniqueCode"
+                    name="uniqueCode"
+                    type="text"
+                    placeholder="Enter team code (optional)"
+                    value={formData.uniqueCode}
+                    onChange={handleInputChange}
+                    className="pl-10 bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
+                  />
+                </div>
+              </div>
+
               <Button
                 type="submit"
                 className="w-full bg-red-600 hover:bg-red-700 text-white py-3"
-                disabled={isPending}
+                // disabled={isPending} // Uncomment when API is re-enabled
               >
-                {isPending ? (
+                {/* {isPending ? (
                   <div className="flex items-center space-x-2">
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     <span>Creating account...</span>
                   </div>
                 ) : (
                   "Create Account"
-                )}
+                )} */}
+                Create Account
               </Button>
             </form>
 

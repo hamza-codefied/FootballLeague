@@ -78,17 +78,17 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <motion.div
-            className="flex items-center space-x-3"
+            className="hidden sm:flex items-center space-x-3"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
             <Link href="/" className="flex items-center space-x-3">
               <div className="relative">
-                <img
+                {/* <img
                   src="/images/logo-no-bg.png"
                   alt="Luton Sylhet Division Cup"
                   className="w-12 h-12 object-contain"
-                />
+                /> */}
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-full blur-xl"></div>
               </div>
               <div className="hidden sm:block">
