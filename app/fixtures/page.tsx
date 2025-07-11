@@ -63,12 +63,12 @@ export default function FixturesPage() {
           style={{ y: y1 }}
         >
           <motion.div
-            className="mb-6 mt-20"
+            className="mb-6 mt-5 md:mt-20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="inline-flex mt-24 items-center space-x-2 bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 sm:px-6 sm:py-3">
+            <div className="inline-flex mt-5 md:mt-24 items-center space-x-2 bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 sm:px-6 sm:py-3">
               <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
               <span className="text-blue-400 text-xs sm:text-sm font-semibold uppercase tracking-wide">
                 Match Schedule
@@ -289,34 +289,26 @@ export default function FixturesPage() {
 
           {/* Fixtures List */}
           <div className="space-y-6">
-            {fixtures &&
-              fixtures?.length > 0 &&
-              fixtures?.map((fixture, index) => (
+            {fixtures?.length > 0 &&
+              fixtures.map((fixture, index) => (
                 <motion.div
                   key={fixture.id}
-                  initial={{ opacity: 0, x: -100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.15 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
                   viewport={{ once: true }}
                   className="group"
                 >
-                  {/* Match Date & Time Header */}
-                  <motion.div
-                    className="text-center mb-4"
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-full px-6 py-2 border border-gray-600/30">
+                  {/* Date & Time */}
+                  <div className="text-center mb-4">
+                    <div className="inline-flex flex-wrap items-center justify-center space-x-2 sm:space-x-4 bg-gray-800/50 backdrop-blur-sm rounded-full px-4 py-1 sm:px-6 sm:py-2 border border-gray-600/30 text-xs sm:text-sm">
                       <Calendar className="w-4 h-4 text-yellow-400" />
                       <span className="text-white font-semibold">
                         {new Date(fixture.fixture_date).toLocaleDateString(
                           "en-US",
                           {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
+                            weekday: "short",
+                            month: "short",
                             day: "numeric",
                           }
                         )}
@@ -326,150 +318,70 @@ export default function FixturesPage() {
                         {fixture.fixture_time}
                       </span>
                     </div>
-                  </motion.div>
+                  </div>
 
-                  {/* Match Strip */}
-                  <motion.div
-                    className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-gray-900/80 via-gray-800/60 to-gray-900/80 backdrop-blur-sm border border-gray-700/50 group-hover:border-yellow-400/50 transition-all duration-500"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {/* Background Animation */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      animate={{
-                        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Number.POSITIVE_INFINITY,
-                      }}
-                    />
-
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    <div className="relative z-10 flex items-center justify-between p-6 sm:p-8">
+                  {/* Fixture Card */}
+                  <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-gray-900/80 via-gray-800/60 to-gray-900/80 border border-gray-700/50 hover:border-yellow-400/50 transition-all duration-500 p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4">
                       {/* Home Team */}
-                      <motion.div
-                        className="flex items-center space-x-4 flex-1"
-                        whileHover={{ x: 10 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {/* Team Logo */}
-                        <motion.div className="relative">
-                          <div className="w-16 h-16 sm:w-28 sm:h-28 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
-                            <Image
-                              src={fixture.home_team_logo}
-                              alt={fixture.home_team}
-                              width={64}
-                              height={64}
-                              className="rounded-full"
-                            />
-                          </div>
-                          {/* Hexagon Border Effect */}
-                          <div className="absolute inset-0 rounded-full border-2 border-red-400/50 animate-pulse" />
-                        </motion.div>
-
-                        {/* Team Name */}
-                        <div className="text-left">
-                          <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-red-400 transition-colors duration-300">
+                      <div className="flex items-center space-x-3 min-w-0">
+                        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-red-500 rounded-full flex items-center justify-center">
+                          <Image
+                            src={fixture.home_team_logo}
+                            alt={fixture.home_team}
+                            width={64}
+                            height={64}
+                            className="rounded-full object-contain"
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="text-base sm:text-xl font-bold text-white truncate">
                             {fixture.home_team}
                           </h3>
-                          <p className="text-gray-400 text-sm uppercase tracking-wider">
+                          <p className="text-gray-400 text-xs uppercase">
                             Home
                           </p>
                         </div>
-                      </motion.div>
+                      </div>
 
-                      {/* VS Section */}
-                      <motion.div
-                        className="flex flex-col items-center mx-6 sm:mx-8"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <motion.div
-                          className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-black text-lg sm:text-xl px-4 py-2 rounded-full shadow-lg"
-                          animate={{
-                            boxShadow: [
-                              "0 0 20px rgba(234, 179, 8, 0.5)",
-                              "0 0 30px rgba(234, 179, 8, 0.8)",
-                              "0 0 20px rgba(234, 179, 8, 0.5)",
-                            ],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Number.POSITIVE_INFINITY,
-                          }}
-                        >
+                      {/* VS */}
+                      <div className="flex flex-col items-center space-y-1">
+                        <div className="bg-yellow-400 text-black font-bold text-sm sm:text-lg px-3 py-1 rounded-full shadow">
                           VS
-                        </motion.div>
-
-                        {/* Match Status */}
-                        <motion.div
-                          className="mt-2 px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.15 + 0.5 }}
-                          viewport={{ once: true }}
-                        >
-                          <span className="text-green-400 text-xs font-semibold uppercase tracking-wider">
-                            Upcoming
-                          </span>
-                        </motion.div>
-                      </motion.div>
+                        </div>
+                        <span className="text-green-400 text-xs uppercase">
+                          Upcoming
+                        </span>
+                      </div>
 
                       {/* Away Team */}
-                      <motion.div
-                        className="flex items-center space-x-4 flex-1 justify-end"
-                        whileHover={{ x: -10 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {/* Team Name */}
-                        <div className="text-right">
-                          <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+                      <div className="flex items-center space-x-3 min-w-0 justify-end">
+                        <div className="min-w-0 text-right">
+                          <h3 className="text-base sm:text-xl font-bold text-white truncate">
                             {fixture.away_team}
                           </h3>
-                          <p className="text-gray-400 text-sm uppercase tracking-wider">
+                          <p className="text-gray-400 text-xs uppercase">
                             Away
                           </p>
                         </div>
-
-                        {/* Team Logo */}
-                        <motion.div className="relative">
-                          <div className="w-16 h-16 sm:w-28 sm:h-28 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg border-2 border-white/20">
-                            <Image
-                              src={fixture.away_team_logo}
-                              alt={fixture.away_team}
-                              width={64}
-                              height={64}
-                              className="rounded-full"
-                            />
-                          </div>
-                          {/* Hexagon Border Effect */}
-                          <div className="absolute inset-0 rounded-full border-2 border-blue-400/50 animate-pulse" />
-                        </motion.div>
-                      </motion.div>
-                    </div>
-
-                    {/* Venue Info */}
-                    <motion.div
-                      className="border-t border-gray-700/50 px-6 sm:px-8 py-4 bg-gray-800/30"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.15 + 0.3 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="flex items-center justify-center space-x-6 text-gray-400">
-                        <div className="flex items-center space-x-2">
-                          <MapPin className="w-4 h-4 text-green-400" />
-                          <span className="text-sm font-medium">
-                            {fixture.venue}
-                          </span>
+                        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-blue-500 rounded-full flex items-center justify-center">
+                          <Image
+                            src={fixture.away_team_logo}
+                            alt={fixture.away_team}
+                            width={64}
+                            height={64}
+                            className="rounded-full object-contain"
+                          />
                         </div>
                       </div>
-                    </motion.div>
-                  </motion.div>
+                    </div>
+
+                    {/* Venue */}
+                    <div className="border-t border-gray-700/50 mt-4 pt-2 text-center text-xs sm:text-sm text-gray-400 flex items-center justify-center space-x-2">
+                      <MapPin className="w-4 h-4 text-green-400" />
+                      <span>{fixture.venue}</span>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
           </div>

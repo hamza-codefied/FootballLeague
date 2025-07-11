@@ -14,6 +14,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Link from "next/link";
+import { teams } from "../page";
 
 const teamMembers = [
   {
@@ -523,35 +525,66 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {[
-              "Dakshin Surma",
-              "Golapgonj",
-              "Fenchugonj",
-              "Balaganj",
-              "Jagannathpur",
-              "Bishwanath",
-              "Beani Bazar",
-              "Habigonj",
-              "Moulvibazar",
-              "Osmaninagar",
-            ].map((district, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+            {teams.map((team, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                key={team.name}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100,
+                }}
                 viewport={{ once: true }}
                 className="group"
               >
-                <div className="premium-card hover-lift text-center group-hover:neon-glow">
-                  <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Trophy className="w-8 h-8 text-black" />
+                <Link
+                  href={`/teams/${team.name
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                >
+                  <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden min-h-[220px] sm:min-h-[280px] cursor-pointer flex flex-col items-center justify-center space-y-4">
+                    {/* Card Background Effect */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-br ${team.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                      animate={{
+                        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Number.POSITIVE_INFINITY,
+                      }}
+                    />
+
+                    {/* Team Logo */}
+                    <motion.div
+                      className={`w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br ${team.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}
+                      transition={{ duration: 0.8 }}
+                    >
+                      <img
+                        src={team.logo}
+                        alt={`${team.name} Logo`}
+                        className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
+                      />
+                    </motion.div>
+
+                    {/* Team Name */}
+                    <motion.h3
+                      className="text-lg sm:text-xl font-bold text-white group-hover:gradient-text transition-all duration-300 text-center"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {team.name}
+                    </motion.h3>
+
+                    {/* Hover Overlay */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      initial={false}
+                    />
                   </div>
-                  <h3 className="text-white font-bold text-sm  group-hover:gradient-text transition-all duration-300">
-                    {district}
-                  </h3>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>

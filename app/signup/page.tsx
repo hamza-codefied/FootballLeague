@@ -102,7 +102,7 @@ export default function SignupPage() {
         <Card className="bg-gray-800 border-gray-700 shadow-2xl">
           <CardHeader className="text-center pb-8">
             <motion.div
-              className="flex justify-center mb-4"
+              className="flex justify-center mb-2"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
@@ -115,9 +115,7 @@ export default function SignupPage() {
                 />
               </div>
             </motion.div>
-            <p className="text-gray-400 mt-2">
-              Create your account to get started
-            </p>
+            <p className="text-gray-400 mt-2">Register to get started</p>
           </CardHeader>
 
           <CardContent>
@@ -192,7 +190,7 @@ export default function SignupPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="uniqueCode" className="text-gray-300">
-                  Team Code (Optional)
+                  Team Code
                 </Label>
                 <div className="relative">
                   <Code className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -200,7 +198,8 @@ export default function SignupPage() {
                     id="uniqueCode"
                     name="uniqueCode"
                     type="text"
-                    placeholder="Enter team code (optional)"
+                    placeholder="Enter team code"
+                    required
                     value={formData.uniqueCode}
                     onChange={handleInputChange}
                     className="pl-10 bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
@@ -221,7 +220,7 @@ export default function SignupPage() {
                 ) : (
                   "Create Account"
                 )} */}
-                Create Account
+                Register
               </Button>
             </form>
 
