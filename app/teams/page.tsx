@@ -40,8 +40,8 @@ export default function TeamDetailPage() {
     coach: "Mohammad Rafiqul Islam",
     captain: "Ahmed Hassan",
     colors: { primary: "from-red-500 to-red-600", accent: "text-red-400" },
-    logo: "/placeholder.svg?height=120&width=120",
-    heroImage: "/placeholder.svg?height=400&width=800",
+    logo: "/images/dakshin.png",
+      heroImage: "/placeholder.svg?height=400&width=800",
     description:
       "Dakshin Surma FC is one of the most prestigious football clubs in the Sylhet Division Cup. Founded in 2018, the club has quickly risen through the ranks to become a formidable force in district football.",
     achievements: ["District Champions 2023", "Division Cup Runners-up 2022"],
@@ -286,12 +286,14 @@ export default function TeamDetailPage() {
             transition={{ duration: 1, delay: 0.2 }}
           >
             <motion.div
+              style={{
+                backgroundImage: `url(${team.logo})`,
+                backgroundSize:"cover",
+              }}
               className={`w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br ${team.colors.primary} rounded-full mx-auto flex items-center justify-center mb-6 shadow-2xl`}
               whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.8 }}
-            >
-              <Shield className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
-            </motion.div>
+            ></motion.div>
 
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-4">
               <span className="gradient-text">{team.name}</span>
@@ -538,11 +540,15 @@ export default function TeamDetailPage() {
 
                   <div className="text-center mb-6">
                     <div
+                      style={{
+                        backgroundImage: "url('/images/player.png')",
+                        backgroundSize: "cover",
+                      }}
                       className={`w-20 h-20 bg-gradient-to-br ${team.colors.primary} rounded-full mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
                     >
-                      <span className="text-white font-bold text-2xl">
+                      {/* <span className="text-white font-bold text-2xl">
                         {player.name.charAt(0)}
-                      </span>
+                      </span> */}
                     </div>
                     <h4 className="text-xl font-bold text-white mb-1">
                       {player.name}

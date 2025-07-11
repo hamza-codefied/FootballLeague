@@ -28,21 +28,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useFixtures } from "@/hooks/use-fixtures";
 
 export default function HomePage() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
   const y2 = useTransform(scrollY, [0, 300], [0, -100]);
   const y3 = useTransform(scrollY, [0, 500], [0, -150]);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 3);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   const {
-    data: fixtures,
+    data: fixtures = [],
     isLoading: fixturesLoading,
     isFetching: fixturesFetching,
     isError: fixturesError,
@@ -54,7 +46,7 @@ export default function HomePage() {
     {
       id: 1,
       name: "Dakshin Surma",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/dakshin.png",
       players: ["Ahmed Hassan", "Karim Rahman", "Nasir Ahmed"],
       color: "from-red-500 to-red-600",
       accent: "text-red-400",
@@ -62,7 +54,7 @@ export default function HomePage() {
     {
       id: 2,
       name: "Golapgonj",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/golapganj.png",
       players: ["Rafiq Islam", "Salam Khan", "Habib Miah"],
       color: "from-blue-500 to-blue-600",
       accent: "text-blue-400",
@@ -70,7 +62,7 @@ export default function HomePage() {
     {
       id: 3,
       name: "Fenchugonj",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/fenchugon.png",
       players: ["Mizanur Rahman", "Shahid Ullah", "Rashed Ali"],
       color: "from-green-500 to-green-600",
       accent: "text-green-400",
@@ -78,7 +70,7 @@ export default function HomePage() {
     {
       id: 4,
       name: "Balaganj",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/balagonj.png",
       players: ["Faruk Ahmed", "Belal Hossain", "Monir Khan"],
       color: "from-purple-500 to-purple-600",
       accent: "text-purple-400",
@@ -86,7 +78,7 @@ export default function HomePage() {
     {
       id: 5,
       name: "Jagannathpur",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/jagannathpur.png",
       players: ["Jahangir Alam", "Rubel Miah", "Saiful Islam"],
       color: "from-yellow-500 to-orange-500",
       accent: "text-yellow-400",
@@ -94,7 +86,7 @@ export default function HomePage() {
     {
       id: 6,
       name: "Bishwanath",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/bishwanath.png",
       players: ["Aminul Haque", "Delwar Hossain", "Nazrul Islam"],
       color: "from-indigo-500 to-indigo-600",
       accent: "text-indigo-400",
@@ -102,7 +94,7 @@ export default function HomePage() {
     {
       id: 7,
       name: "Beani Bazar",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/beanibazar.png",
       players: ["Shamsul Alam", "Mokbul Ahmed", "Hanif Miah"],
       color: "from-pink-500 to-pink-600",
       accent: "text-pink-400",
@@ -110,7 +102,7 @@ export default function HomePage() {
     {
       id: 8,
       name: "Habigonj",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/habigonj.png",
       players: ["Abdur Rahman", "Liton Miah", "Sumon Khan"],
       color: "from-teal-500 to-teal-600",
       accent: "text-teal-400",
@@ -118,7 +110,7 @@ export default function HomePage() {
     {
       id: 9,
       name: "Moulvibazar",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/moulvibazar.png",
       players: ["Kamrul Hassan", "Iqbal Ahmed", "Firoz Alam"],
       color: "from-cyan-500 to-cyan-600",
       accent: "text-cyan-400",
@@ -126,13 +118,13 @@ export default function HomePage() {
     {
       id: 10,
       name: "Osmaninagar",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: "/images/osmaninagar.png",
       players: ["Masud Rana", "Jewel Miah", "Alamgir Hossain"],
       color: "from-emerald-500 to-emerald-600",
       accent: "text-emerald-400",
     },
   ];
-
+  console.log("fixtures", fixtures);
   return (
     <div className="min-h-screen animated-bg text-white overflow-hidden">
       <Navigation />
@@ -158,7 +150,7 @@ export default function HomePage() {
 
           {/* Animated Particles */}
           <div className="absolute inset-0 z-5">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(20)]?.map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-2 h-2 bg-yellow-400/30 rounded-full"
@@ -406,10 +398,14 @@ export default function HomePage() {
                     <div className="text-center mb-6 relative z-10">
                       <motion.div
                         className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${team.color} rounded-full mx-auto flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg`}
-                        whileHover={{ rotate: 360 }}
+                        // whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.8 }}
                       >
-                        <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                        <img
+                          src={team.logo}
+                          alt={`${team.name} Logo`}
+                          className="w-12 h-12 sm:w-10 sm:h-10 object-cover"
+                        />
                       </motion.div>
 
                       <motion.h3
@@ -543,102 +539,104 @@ export default function HomePage() {
 
           {/* Fixtures Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-            {fixtures?.slice(0, 3).map((fixture, index) => (
-              <motion.div
-                key={fixture.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden min-h-[350px]">
-                  {/* Card Background Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    animate={{
-                      backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Number.POSITIVE_INFINITY,
-                    }}
-                  />
+            {fixtures &&
+              fixtures?.length > 0 &&
+              fixtures?.slice(0, 3)?.map((fixture, index) => (
+                <motion.div
+                  key={fixture.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="premium-card hover-lift group-hover:neon-glow relative overflow-hidden min-h-[350px]">
+                    {/* Card Background Effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      animate={{
+                        backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Number.POSITIVE_INFINITY,
+                      }}
+                    />
 
-                  <div className="flex justify-between items-center mb-4 sm:mb-6 relative z-10 text-xs sm:text-sm">
-                    <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full">
-                      UPCOMING
-                    </Badge>
-                    <div className="flex items-center text-gray-400">
-                      <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                      {new Date(fixture.fixture_date).toLocaleDateString()}
+                    <div className="flex justify-between items-center mb-4 sm:mb-6 relative z-10 text-xs sm:text-sm">
+                      <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full">
+                        UPCOMING
+                      </Badge>
+                      <div className="flex items-center text-gray-400">
+                        <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                        {new Date(fixture.fixture_date).toLocaleDateString()}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Teams */}
-                  <div className="text-center mb-6 sm:mb-8 relative z-10">
-                    <div className="flex items-center justify-between mb-4 sm:mb-6">
-                      <div className="text-center flex-1">
-                        <motion.div
-                          className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full mx-auto flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <span className="text-white font-bold text-base sm:text-lg">
-                            H
-                          </span>
-                        </motion.div>
-                        <div className="text-sm font-bold text-white">
-                          {fixture.home_team}
+                    {/* Teams */}
+                    <div className="text-center mb-6 sm:mb-8 relative z-10">
+                      <div className="flex items-center justify-between mb-4 sm:mb-6">
+                        <div className="text-center flex-1">
+                          <motion.div
+                            className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full mx-auto flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <span className="text-white font-bold text-base sm:text-lg">
+                              H
+                            </span>
+                          </motion.div>
+                          <div className="text-sm font-bold text-white">
+                            {fixture.home_team}
+                          </div>
+                        </div>
+
+                        <div className="mx-4 sm:mx-6">
+                          <motion.div className="text-xl font-black gradient-text">
+                            VS
+                          </motion.div>
+                        </div>
+
+                        <div className="text-center flex-1">
+                          <motion.div
+                            className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
+                            whileHover={{ rotate: -360 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <span className="text-white font-bold text-base sm:text-lg">
+                              A
+                            </span>
+                          </motion.div>
+                          <div className="text-sm font-bold text-white">
+                            {fixture.away_team}
+                          </div>
                         </div>
                       </div>
+                    </div>
 
-                      <div className="mx-4 sm:mx-6">
-                        <motion.div className="text-xl font-black gradient-text">
-                          VS
-                        </motion.div>
-                      </div>
-
-                      <div className="text-center flex-1">
-                        <motion.div
-                          className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-transform"
-                          whileHover={{ rotate: -360 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <span className="text-white font-bold text-base sm:text-lg">
-                            A
+                    <div className="space-y-3 sm:space-y-4 text-gray-400 relative z-10 text-xs sm:text-sm">
+                      <div className="flex items-center justify-center space-x-4 sm:space-x-6">
+                        <div className="flex items-center">
+                          <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-yellow-400" />
+                          <span>{fixture.fixture_time}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-green-400" />
+                          <span className="text-xs line-clamp-1">
+                            {fixture.venue}
                           </span>
-                        </motion.div>
-                        <div className="text-sm font-bold text-white">
-                          {fixture.away_team}
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-3 sm:space-y-4 text-gray-400 relative z-10 text-xs sm:text-sm">
-                    <div className="flex items-center justify-center space-x-4 sm:space-x-6">
-                      <div className="flex items-center">
-                        <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-yellow-400" />
-                        <span>{fixture.fixture_time}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-green-400" />
-                        <span className="text-xs line-clamp-1">
-                          {fixture.venue}
-                        </span>
-                      </div>
+                    <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-800 relative z-10">
+                      <Button className="w-full btn-secondary group-hover:btn-primary transition-all duration-300 text-xs sm:text-sm">
+                        View Details
+                      </Button>
                     </div>
                   </div>
-
-                  <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-800 relative z-10">
-                    <Button className="w-full btn-secondary group-hover:btn-primary transition-all duration-300 text-xs sm:text-sm">
-                      View Details
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
           </div>
 
           <motion.div

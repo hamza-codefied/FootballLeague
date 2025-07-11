@@ -66,7 +66,7 @@ export default function FixturesPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 sm:px-6 sm:py-3">
+            <div className="inline-flex mt-24 items-center space-x-2 bg-gradient-to-r from-blue-400/20 to-green-400/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 sm:px-6 sm:py-3">
               <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
               <span className="text-blue-400 text-xs sm:text-sm font-semibold uppercase tracking-wide">
                 Match Schedule
@@ -134,7 +134,7 @@ export default function FixturesPage() {
       </section>
 
       {/* Filters Section */}
-      <section className="py-16 px-4 relative">
+      {/* <section className="py-16 px-4 relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="glass-effect rounded-3xl p-8"
@@ -196,7 +196,7 @@ export default function FixturesPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Upcoming Fixtures */}
       {fixtures.length > 0 && (
@@ -390,7 +390,7 @@ export default function FixturesPage() {
                             {fixture.home_team}
                           </div>
                           <div className="text-2xl font-black gradient-text">
-                            {fixture.homeScore ? fixture.homeScore : "0"}
+                            {fixture?.homeScore ? fixture?.homeScore : "0"}
                           </div>
                         </div>
 
