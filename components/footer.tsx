@@ -91,7 +91,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <MapPin className="w-4 h-4" />
-                <span>The Tokyo's Academy, Luton</span>
+                <span>The Chalk Hills Academy, Luton</span>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © 2025 District Football League. All rights reserved.
+            © 2025 Luton Sylhet Division Cup. All rights reserved.
           </p>
         </div>
       </div>
