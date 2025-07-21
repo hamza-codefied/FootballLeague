@@ -330,21 +330,22 @@ export default function AdminPage() {
                       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-gray-800/40 p-4 rounded-xl border border-gray-700 hover:border-yellow-400 transition">
                         {/* Home */}
                         <div className="flex items-center gap-3">
-                          <Image
-                            src={fixture.home_team_logo}
-                            alt={fixture.home_team}
-                            width={48}
-                            height={48}
-                            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full"
-                          />
-                          <div>
+                          <div className="w-20 h-20 flex items-center justify-center rounded-full">
+                            <Image
+                              src={fixture.home_team_logo}
+                              alt={fixture.home_team}
+                              width={48}
+                              height={48}
+                            />
+                          </div>
+                          {/* <div>
                             <h3 className="text-base sm:text-xl font-bold">
                               {fixture.home_team}
                             </h3>
                             <p className="text-gray-400 text-xs uppercase">
                               Home
                             </p>
-                          </div>
+                          </div> */}
                         </div>
 
                         {/* VS */}
@@ -359,21 +360,22 @@ export default function AdminPage() {
 
                         {/* Away */}
                         <div className="flex items-center gap-3">
-                          <div className="text-right">
+                          {/* <div className="text-right">
                             <h3 className="text-base sm:text-xl font-bold">
                               {fixture.away_team}
                             </h3>
                             <p className="text-gray-400 text-xs uppercase">
                               Away
                             </p>
+                          </div> */}
+                          <div className="w-20 h-20 flex items-center justify-center  rounded-full">
+                            <Image
+                              src={fixture.away_team_logo}
+                              alt={fixture.away_team}
+                              width={48}
+                              height={48}
+                            />
                           </div>
-                          <Image
-                            src={fixture.away_team_logo}
-                            alt={fixture.away_team}
-                            width={48}
-                            height={48}
-                            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full"
-                          />
                         </div>
                       </div>
 

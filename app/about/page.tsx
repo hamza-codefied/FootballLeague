@@ -525,7 +525,7 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
             {teams.map((team, index) => (
               <motion.div
                 key={team.name}
@@ -572,7 +572,7 @@ export default function AboutPage() {
 
                     {/* Team Name */}
                     <motion.h3
-                      className="text-lg sm:text-xl font-bold text-white group-hover:gradient-text transition-all duration-300 text-center"
+                      className="text-xs sm:text-xl font-bold text-white group-hover:gradient-text transition-all duration-300 text-center"
                       whileHover={{ scale: 1.05 }}
                     >
                       {team.name}

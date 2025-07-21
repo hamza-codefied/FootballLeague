@@ -233,7 +233,7 @@ export default function HomePage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 py-10 sm:py-0">
+      <section className="relative min-h-[80vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4 py-5 sm:py-0">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80 z-10" />
@@ -281,11 +281,11 @@ export default function HomePage() {
           style={{ y: y1 }}
         >
           {/* Small Screens: Logo */}
-          <div className=" flex justify-center mb-3 mt-10">
+          <div className=" flex justify-center mt-2 sm:mt-5">
             <motion.img
               src="/images/logo-no-bg.png"
               alt="Website Logo"
-              className="w-28 h-28 sm:w-32 sm:h-32 md:w-44 md:h-44"
+              className="w-full"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -501,7 +501,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* Teams Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {teams.map((team, index) => (
               <motion.div
                 key={team.name}
@@ -548,7 +548,7 @@ export default function HomePage() {
 
                     {/* Team Name */}
                     <motion.h3
-                      className="text-lg sm:text-xl font-bold text-white group-hover:gradient-text transition-all duration-300 text-center"
+                      className="text-xs sm:text-xl font-bold text-white group-hover:gradient-text transition-all duration-300 text-center"
                       whileHover={{ scale: 1.05 }}
                     >
                       {team.name}
@@ -692,7 +692,7 @@ export default function HomePage() {
                     <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4">
                       {/* Home Team */}
                       <div className="flex items-center space-x-3 min-w-0">
-                        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-red-500 rounded-full flex items-center justify-center">
+                        <div className="rounded-full flex items-center justify-center">
                           <Image
                             src={fixture.home_team_logo}
                             alt={fixture.home_team}
@@ -701,14 +701,14 @@ export default function HomePage() {
                             className="rounded-full object-contain"
                           />
                         </div>
-                        <div className="min-w-0">
+                        {/* <div className="min-w-0">
                           <h3 className="text-base sm:text-xl font-bold text-white truncate">
                             {fixture.home_team}
                           </h3>
                           <p className="text-gray-400 text-xs uppercase">
                             Home
                           </p>
-                        </div>
+                        </div> */}
                       </div>
 
                       {/* VS */}
@@ -723,15 +723,15 @@ export default function HomePage() {
 
                       {/* Away Team */}
                       <div className="flex items-center space-x-3 min-w-0 justify-end">
-                        <div className="min-w-0 text-right">
+                        {/* <div className="min-w-0 text-right">
                           <h3 className="text-base sm:text-xl font-bold text-white truncate">
                             {fixture.away_team}
                           </h3>
                           <p className="text-gray-400 text-xs uppercase">
                             Away
                           </p>
-                        </div>
-                        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-blue-500 rounded-full flex items-center justify-center">
+                        </div> */}
+                        <div className="rounded-full flex items-center justify-center">
                           <Image
                             src={fixture.away_team_logo}
                             alt={fixture.away_team}
